@@ -28,7 +28,7 @@ class DisableDoubleClickZoom(MacroElement):
 # ========== 讀取圖 ==========
 @st.cache_resource
 def load_graph():
-    pkl_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/空間資料/路網/Tai_Road_濃度_最大連通版.pkl"
+    pkl_path = r"data/Tai_Road_濃度_最大連通版.pkl"
     with open(pkl_path, "rb") as f:
         G = pickle.load(f)
 
@@ -126,7 +126,7 @@ st.markdown("""
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.title("Geo-AI 路徑好空氣（台北市）")
+    st.title("Geo-AI 路徑好空氣")
 
     if "transport_mode" not in st.session_state:
         st.session_state.transport_mode = "機車"
@@ -324,7 +324,7 @@ with col2:
         import base64
 
         # PNG 圖片路徑
-        png_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/空間資料/空汙推估圖/PM25_大台北2.png"
+        png_path = r"data/PM25_大台北2.png"
 
         # TWD97 座標
         left_twd97 = 278422.218791
@@ -427,8 +427,8 @@ def get_image_base64(path):
     return encoded
 
 # 圖片路徑
-logo1_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/logo/成大_白色垂直.jpg"
-logo2_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/logo/實驗室_白色方形.jpg"
+logo1_path = r"logo/成大_白色垂直.jpg"
+logo2_path = r"logo/實驗室_白色方形.jpg"
 
 # 轉 base64
 logo1_base64 = get_image_base64(logo1_path)
