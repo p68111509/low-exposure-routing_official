@@ -292,6 +292,46 @@ with col2:
     if "show_pm25_layer" not in st.session_state:
         st.session_state.show_pm25_layer = False
 
+    # CSS：移除 form 外框與陰影
+    st.markdown(
+        """
+        <style>
+        div[data-testid="stForm"] {
+            padding: 0 !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        div.stButton > button.pm25-toggle {
+            border: 2px solid %s;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 16px;
+            color: black;
+            background-color: white;
+        }
+        </style>
+        """ % ("red" if st.session_state.show_pm25_layer else "#cccccc"),
+        unsafe_allow_html=True
+    )
+
+    # 切換 PM2.5 圖層按鈕（用 form 包起來以利 JS 操作）
+    with st.form(key="pm25_form"):
+        submitted = st.form_submit_button("🟣 切換 PM2.5 圖層")
+        st.markdown(
+            """<script>
+                const btn = window.parent.document.querySelectorAll('button');
+                btn.forEach(b => {
+                    if (b.innerText.includes('切換 PM2.5 圖層')) {
+                        b.classList.add('pm25-toggle');
+                    }
+                });
+            </script>""",
+            unsafe_allow_html=True
+        )
+        if submitted:
+            st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
     m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
     m.add_child(DisableDoubleClickZoom())
 
@@ -324,7 +364,7 @@ with col2:
         import base64
 
         # PNG 圖片路徑
-        png_path = r"data/PM25_大台北2.png"
+        png_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/空間資料/空汙推估圖/PM25_大台北2.png"
 
         # TWD97 座標
         left_twd97 = 278422.218791
@@ -355,50 +395,8 @@ with col2:
             zindex=1,
         ).add_to(m)
 
-    # 顯示地圖
     st_data = st_folium(m, width=650, height=550)
 
-    # ========== PM2.5 按鈕移到底部 ==========
-    st.markdown(
-        """
-        <style>
-        div[data-testid="stForm"] {
-            padding: 0 !important;
-            background-color: transparent !important;
-            box-shadow: none !important;
-            border: none !important;
-        }
-        div.stButton > button.pm25-toggle {
-            border: 2px solid %s;
-            border-radius: 8px;
-            padding: 6px 14px;
-            font-size: 16px;
-            color: black;
-            background-color: white;
-            margin-top: 1rem;
-        }
-        </style>
-        """ % ("red" if st.session_state.show_pm25_layer else "#cccccc"),
-        unsafe_allow_html=True
-    )
-
-    with st.form(key="pm25_form"):
-        submitted = st.form_submit_button("🟣 切換 PM2.5 圖層")
-        st.markdown(
-            """<script>
-                const btn = window.parent.document.querySelectorAll('button');
-                btn.forEach(b => {
-                    if (b.innerText.includes('切換 PM2.5 圖層')) {
-                        b.classList.add('pm25-toggle');
-                    }
-                });
-            </script>""",
-            unsafe_allow_html=True
-        )
-        if submitted:
-            st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
-
-    # 點擊地圖選點
     if st_data and st_data.get("last_clicked"):
         latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
         nearest_node = find_nearest_node(G, *latlon)
@@ -407,7 +405,7 @@ with col2:
             st.session_state.nodes.append(nearest_node)
             st.session_state.points.append([lat_, lon_])
 
-            # 反查地址並自動填入
+            # 🔄 加上這段：反查地址並自動填入
             address = reverse_geocode(lat_, lon_)
             if len(st.session_state.points) == 1:
                 st.session_state["set_start_address"] = address
