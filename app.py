@@ -140,7 +140,7 @@ with col1:
         st.markdown(
             """
             <h3 style='font-family: Microsoft JhengHei;'>
-                地址輸入 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於右圖雙擊選擇)</span>
+                輸入地址 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於地圖雙擊)</span>
             </h3>
             """,
             unsafe_allow_html=True
