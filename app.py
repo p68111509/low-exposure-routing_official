@@ -326,7 +326,7 @@ with col2:
             <script>
             const btn = window.parent.document.querySelectorAll('button');
             btn.forEach(b => {{
-                if (b.innerText.includes('切換 PM2.5 圖層')) {{
+                if (b.innerText.includes('PM2.5濃度疊圖')) {{
                     b.classList.add('pm25-toggle');
                     b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
                 }}
