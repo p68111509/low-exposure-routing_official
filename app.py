@@ -471,9 +471,9 @@ st.markdown(f"""
             許家瑋<br>
             林祐如<br>
             <div class="title">指導老師</div>
-            吳治達<br><br>
+            吳治達<br>
         </div>
         <img class="logo-img" src="data:image/jpg;base64,{logo1_base64}">
-        <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}">
+        <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}"><br><br>
     </div>
 """, unsafe_allow_html=True)
