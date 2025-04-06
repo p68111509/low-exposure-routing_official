@@ -224,7 +224,7 @@ with col1:
         </style>
     """, unsafe_allow_html=True)
 
-    btn_row = st.columns([12, 12, 12, 33, 40])
+    btn_row = st.columns([15, 15, 15, 33, 40])
 
     with btn_row[0]:
         if st.button("機車"):
