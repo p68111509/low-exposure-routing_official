@@ -212,7 +212,7 @@ with col1:
             st.rerun()
 
     # 統計表格
-    table_row = st.columns([3,2])
+    table_row = st.columns([4,1])
     with table_row[0]:
             
         transport_mode = st.session_state.transport_mode
