@@ -146,7 +146,7 @@ with col1:
             unsafe_allow_html=True
         )
     with subtile_row[1]:
-        if st.button("🔃 重新選擇起終點"):
+        if st.button("🔃 重新選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
@@ -224,7 +224,7 @@ with col1:
         </style>
     """, unsafe_allow_html=True)
 
-    btn_row = st.columns([9, 9, 9, 33, 40])
+    btn_row = st.columns([12, 12, 12, 33, 40])
 
     with btn_row[0]:
         if st.button("機車"):
@@ -235,7 +235,7 @@ with col1:
     with btn_row[2]:
         if st.button("步行"):
             st.session_state.transport_mode = "步行"
-    with btn_row[3]:  # ← 👈 就是這邊放你要搬來的按鈕
+    with btn_row[3]:
         with st.form(key="pm25_form"):
             submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
             st.markdown(f"""
