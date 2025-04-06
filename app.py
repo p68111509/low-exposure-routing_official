@@ -157,7 +157,7 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
     with row1[1]:
         st.markdown("<div style='padding-top: 26px;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("確定起點"):
+        if st.button("🟢 確定起點"):
             if start_address.strip():
                 result = geocode(start_address)
                 if result:
@@ -175,7 +175,7 @@ with col1:
         st.markdown("</div>", unsafe_allow_html=True)
 
         st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("確定終點"):
+        if st.button("🔴 確定終點"):
             if end_address.strip():
                 result = geocode(end_address)
                 if result:
