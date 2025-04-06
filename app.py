@@ -296,9 +296,8 @@ with col2:
     if "show_pm25_layer" not in st.session_state:
         st.session_state.show_pm25_layer = False
 
-    # CSS：移除 form 外框與陰影
-    st.markdown(
-        """
+    # 切換 PM2.5 圖層按鈕樣式
+    st.markdown("""
         <style>
         div[data-testid="stForm"] {
             padding: 0 !important;
@@ -306,33 +305,34 @@ with col2:
             box-shadow: none !important;
             border: none !important;
         }
-        div.stButton > button.pm25-toggle {
-            border: 2px solid %s;
+        button.pm25-toggle {
+            border: 2px solid #cccccc;
             border-radius: 8px;
             padding: 6px 14px;
             font-size: 16px;
             color: black;
             background-color: white;
         }
+        button.pm25-toggle.active {
+            border-color: red !important;
+        }
         </style>
-        """ % ("red" if st.session_state.show_pm25_layer else "#cccccc"),
-        unsafe_allow_html=True
-    )
+    """, unsafe_allow_html=True)
 
     # 切換 PM2.5 圖層按鈕（用 form 包起來以利 JS 操作）
     with st.form(key="pm25_form"):
         submitted = st.form_submit_button("🟣 切換 PM2.5 圖層")
-        st.markdown(
-            """<script>
-                const btn = window.parent.document.querySelectorAll('button');
-                btn.forEach(b => {
-                    if (b.innerText.includes('切換 PM2.5 圖層')) {
-                        b.classList.add('pm25-toggle');
-                    }
-                });
-            </script>""",
-            unsafe_allow_html=True
-        )
+        st.markdown(f"""
+            <script>
+            const btn = window.parent.document.querySelectorAll('button');
+            btn.forEach(b => {{
+                if (b.innerText.includes('切換 PM2.5 圖層')) {{
+                    b.classList.add('pm25-toggle');
+                    b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
+                }}
+            }});
+            </script>
+        """, unsafe_allow_html=True)
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
