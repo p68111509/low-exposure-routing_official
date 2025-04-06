@@ -339,48 +339,41 @@ with col1:
 with col2:
     st.markdown("""
         <style>
-        .centered-section {
+        .transport-wrapper {
+            background-color: #f5f5f5;
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            margin-top: 20px;
-        }
-        .transport-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #444444;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
         }
         .transport-button {
             font-size: 14px !important;
             padding: 6px 20px !important;
-            margin-bottom: 8px;
+            margin: 4px 0;
             width: 120px;
             text-align: center;
         }
         </style>
-        <div class="centered-section">
-            <div class="transport-title">通勤方式</div>
-        </div>
+
+        <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    # 🚘 三個交通方式按鈕
-    st.markdown('<div class="centered-section">', unsafe_allow_html=True)
+    # 🚘 三個交通方式按鈕（群組起來）
     if st.button("機車", key="moto"):
         st.session_state.transport_mode = "機車"
     if st.button("單車", key="bike"):
         st.session_state.transport_mode = "單車"
     if st.button("步行", key="walk"):
         st.session_state.transport_mode = "步行"
-    st.markdown('</div>', unsafe_allow_html=True)
 
-    # 🟣 PM2.5 按鈕
+    st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
+
+    # 🟣 PM2.5 按鈕（獨立放置）
     with st.form(key="pm25_form"):
-        st.markdown('<div class="centered-section">', unsafe_allow_html=True)
         submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
-        st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown(f"""
             <script>
@@ -396,6 +389,7 @@ with col2:
 
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
 
 
 
