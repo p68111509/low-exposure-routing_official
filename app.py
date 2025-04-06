@@ -130,21 +130,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([4, 4, 1])
 
 with col1:
-    st.markdown("""
-        <h1 style="
-            font-family: 'Microsoft JhengHei', sans-serif;
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: black;
-            text-align: left;
-            margin-bottom: 0.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        ">
-            Geo-AI 路徑好空氣
-        </h1>
-    """, unsafe_allow_html=True)
-
+    st.title("Geo-AI 路徑好空氣")
 
     if "transport_mode" not in st.session_state:
         st.session_state.transport_mode = "機車"
