@@ -195,6 +195,28 @@ with col1:
 
 
     # ==== 四個按鈕同一排 ====
+    st.markdown("""
+        <style>
+        div[data-testid="stForm"] {
+            padding: 0 !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+        button.pm25-toggle {
+            border: 2px solid #cccccc;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 16px;
+            color: black;
+            background-color: white;
+        }
+        button.pm25-toggle.active {
+            border-color: red !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
     btn_row = st.columns([9, 9, 9, 33, 40])
 
     with btn_row[0]:
