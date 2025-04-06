@@ -112,6 +112,16 @@ def compute_path(G, start_node, end_node, weight):
 ### ========== Streamlit 介面 ========== ###
 st.set_page_config(layout="wide")
 
+# ✅ 加入整體縮放樣式（模擬縮小）
+st.markdown("""
+    <style>
+    [data-testid="stAppViewContainer"] {
+        transform: scale(0.9);   /* 90% 大小 */
+        transform-origin: top center;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # ==== 自訂按鈕樣式（可選）====
 st.markdown("""
     <style>
