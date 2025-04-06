@@ -169,7 +169,7 @@ with col1:
                         st.session_state.nodes = [nearest_node]
                         st.rerun()
                     else:
-                        st.warning("⚠️ 起點位置離路網太遠")
+                        st.warning("⚠️ 離路網太遠")
             else:
                 st.warning("請輸入起點地址")
         st.markdown("</div>", unsafe_allow_html=True)
@@ -195,7 +195,7 @@ with col1:
 
 
     # ==== 四個按鈕同一排 ====
-    btn_row = st.columns([4, 4, 4, 8])
+    btn_row = st.columns([10, 10, 10, 30, 40])
     with btn_row[0]:
         if st.button("機車"):
             st.session_state.transport_mode = "機車"
@@ -321,7 +321,7 @@ with col2:
 
     # 切換 PM2.5 圖層按鈕（用 form 包起來以利 JS 操作）
     with st.form(key="pm25_form"):
-        submitted = st.form_submit_button("🟣 切換 PM2.5 圖層")
+        submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
         st.markdown(f"""
             <script>
             const btn = window.parent.document.querySelectorAll('button');
