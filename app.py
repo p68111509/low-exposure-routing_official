@@ -196,6 +196,7 @@ with col1:
 
     # ==== 四個按鈕同一排 ====
     btn_row = st.columns([9, 9, 9, 33, 40])
+
     with btn_row[0]:
         if st.button("機車"):
             st.session_state.transport_mode = "機車"
@@ -205,11 +206,29 @@ with col1:
     with btn_row[2]:
         if st.button("步行"):
             st.session_state.transport_mode = "步行"
-    with btn_row[3]:
-        if st.button("🔄 重新選擇起終點"):
+    with btn_row[3]:  # ← 👈 就是這邊放你要搬來的按鈕
+        with st.form(key="pm25_form"):
+            submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
+            st.markdown(f"""
+                <script>
+                const btn = window.parent.document.querySelectorAll('button');
+                btn.forEach(b => {{
+                    if (b.innerText.includes('PM2.5濃度疊圖')) {{
+                        b.classList.add('pm25-toggle');
+                        b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
+                    }}
+                }});
+                </script>
+            """, unsafe_allow_html=True)
+            if submitted:
+                st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
+    with btn_row[4]:
+        if st.button("🔃 重新選擇起終點"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
+
 
     # 統計表格
     table_row = st.columns([4,1])
@@ -296,45 +315,6 @@ with col2:
     if "show_pm25_layer" not in st.session_state:
         st.session_state.show_pm25_layer = False
 
-    # 切換 PM2.5 圖層按鈕樣式
-    st.markdown("""
-        <style>
-        div[data-testid="stForm"] {
-            padding: 0 !important;
-            background-color: transparent !important;
-            box-shadow: none !important;
-            border: none !important;
-        }
-        button.pm25-toggle {
-            border: 2px solid #cccccc;
-            border-radius: 8px;
-            padding: 6px 14px;
-            font-size: 16px;
-            color: black;
-            background-color: white;
-        }
-        button.pm25-toggle.active {
-            border-color: red !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-
-    # 切換 PM2.5 圖層按鈕（用 form 包起來以利 JS 操作）
-    with st.form(key="pm25_form"):
-        submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
-        st.markdown(f"""
-            <script>
-            const btn = window.parent.document.querySelectorAll('button');
-            btn.forEach(b => {{
-                if (b.innerText.includes('PM2.5濃度疊圖')) {{
-                    b.classList.add('pm25-toggle');
-                    b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
-                }}
-            }});
-            </script>
-        """, unsafe_allow_html=True)
-        if submitted:
-            st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
     m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
     m.add_child(DisableDoubleClickZoom())
