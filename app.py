@@ -136,7 +136,7 @@ with col1:
             font-size: 38px;
             font-weight: 800;
             letter-spacing: 1.5px;
-            color: #1f5c8a;
+            color: black;
             text-align: left;
             margin-bottom: 0.5em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
