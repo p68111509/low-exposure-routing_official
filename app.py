@@ -135,7 +135,7 @@ with col1:
         st.markdown("""
             <h1 style="
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 30px;
+                font-size: 32px;
                 font-weight: 800;
                 letter-spacing: 1.5px;
                 color: black;
@@ -162,7 +162,7 @@ with col1:
             """
             <div style='
                 font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-                font-size: 25px;
+                font-size: 24px;
                 font-weight: 600;
                 color: #444444;
                 text-align: center;
