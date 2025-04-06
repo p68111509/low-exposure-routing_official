@@ -144,7 +144,7 @@ with col1:
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
                 text-align: center;
             ">
-                Geo-AI 路徑好空氣喵
+                Geo-AI 路徑好空氣
             </h1>
         """, unsafe_allow_html=True)
 
@@ -229,7 +229,6 @@ with col1:
         st.markdown("</div>", unsafe_allow_html=True)
 
 
-    # ==== 四個按鈕同一排 ====
     st.markdown("""
         <style>
         div[data-testid="stForm"] {
@@ -338,7 +337,20 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col2:
-
+    st.markdown(
+        """
+        <div style='
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+            font-size: 25px;
+            font-weight: 600;
+            color: #444444;
+            text-align: center;
+        '>
+            通勤方式
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     if st.button("機車"):
         st.session_state.transport_mode = "機車"
 
