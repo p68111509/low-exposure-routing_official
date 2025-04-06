@@ -112,6 +112,10 @@ def compute_path(G, start_node, end_node, weight):
 ### ========== Streamlit 介面 ========== ###
 st.set_page_config(layout="wide")
 
+# 初始化狀態（放這裡最安全）
+if "show_pm25_layer" not in st.session_state:
+    st.session_state.show_pm25_layer = False
+
 # ==== 自訂按鈕樣式（可選）====
 st.markdown("""
     <style>
@@ -334,9 +338,6 @@ with col1:
 
 
 with col2:
-    # 建立疊圖開關
-    if "show_pm25_layer" not in st.session_state:
-        st.session_state.show_pm25_layer = False
 
 
     m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
