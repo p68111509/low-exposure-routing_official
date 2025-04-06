@@ -127,7 +127,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([4, 4, 1])
+col1, col2, col3 = st.columns([5, 1, 5, 1])
 
 with col1:
     tile_row = st.columns([4, 1])
@@ -252,34 +252,6 @@ with col1:
         </style>
     """, unsafe_allow_html=True)
 
-    btn_row = st.columns([15, 15, 15, 60, 10])
-
-    with btn_row[0]:
-        if st.button("機車"):
-            st.session_state.transport_mode = "機車"
-    with btn_row[1]:
-        if st.button("單車"):
-            st.session_state.transport_mode = "單車"
-    with btn_row[2]:
-        if st.button("步行"):
-            st.session_state.transport_mode = "步行"
-    with btn_row[3]:
-        with st.form(key="pm25_form"):
-            submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
-            st.markdown(f"""
-                <script>
-                const btn = window.parent.document.querySelectorAll('button');
-                btn.forEach(b => {{
-                    if (b.innerText.includes('PM2.5濃度疊圖')) {{
-                        b.classList.add('pm25-toggle');
-                        b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
-                    }}
-                }});
-                </script>
-            """, unsafe_allow_html=True)
-            if submitted:
-                st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
-
 
     # 統計表格
     table_row = st.columns([4,1])
@@ -365,9 +337,34 @@ with col1:
                 </style>
             """, unsafe_allow_html=True)
 
-
-
 with col2:
+
+    if st.button("機車"):
+        st.session_state.transport_mode = "機車"
+
+    if st.button("單車"):
+        st.session_state.transport_mode = "單車"
+
+    if st.button("步行"):
+        st.session_state.transport_mode = "步行"
+
+    with st.form(key="pm25_form"):
+        submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
+        st.markdown(f"""
+            <script>
+            const btn = window.parent.document.querySelectorAll('button');
+            btn.forEach(b => {{
+                if (b.innerText.includes('PM2.5濃度疊圖')) {{
+                    b.classList.add('pm25-toggle');
+                    b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
+                }}
+            }});
+            </script>
+        """, unsafe_allow_html=True)
+        if submitted:
+            st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
+with col3:
 
 
     m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
