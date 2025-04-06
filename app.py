@@ -123,7 +123,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([4, 4, 4])
+col1, col2, col3 = st.columns([5, 5, 2])
 
 with col1:
     st.title("Geo-AI 路徑好空氣")
