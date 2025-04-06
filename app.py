@@ -130,7 +130,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([4, 4, 1])
 
 with col1:
-    st.title("Geo-AI 路徑好空氣")
+    st.title("Geo-AI 路徑好空氣喵")
 
     if "transport_mode" not in st.session_state:
         st.session_state.transport_mode = "機車"
