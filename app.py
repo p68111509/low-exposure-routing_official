@@ -112,36 +112,6 @@ def compute_path(G, start_node, end_node, weight):
 ### ========== Streamlit 介面 ========== ###
 st.set_page_config(layout="wide")
 
-st.markdown("""
-    <style>
-    .fixed-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: white;
-        z-index: 999;
-        text-align: center;
-        padding: 12px 0;
-        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-        font-size: 28px;
-        font-weight: bold;
-        color: #1f5c8a;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    /* 給整個畫面加 padding，避免 header 蓋住內容 */
-    .block-container {
-        padding-top: 80px !important;
-    }
-    </style>
-
-    <div class="fixed-header">
-        Geo-AI 路徑好空氣
-    </div>
-""", unsafe_allow_html=True)
-
-
 # 初始化狀態（放這裡最安全）
 if "show_pm25_layer" not in st.session_state:
     st.session_state.show_pm25_layer = False
@@ -338,7 +308,13 @@ with col1:
                 st.markdown(
                     f"""
                     <div style='margin-top: 1em;'>
-                        <h3 style='text-align: center; font-family: Microsoft JhengHei;'>
+                        <h3 style='
+                            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: #444444;
+                            text-align: center;
+                        '>
                             統計結果：改善率 {improve:.1f}%
                         </h3>
                     </div>
