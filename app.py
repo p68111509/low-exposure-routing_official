@@ -144,7 +144,7 @@ with col1:
         unsafe_allow_html=True
     )
 
-    row1 = st.columns([4, 1])
+    row1 = st.columns([3, 1])
     with row1[0]:
         # 如果有從地圖設定的地址，先更新再畫輸入框
         if "set_start_address" in st.session_state:
@@ -195,7 +195,7 @@ with col1:
 
 
     # ==== 四個按鈕同一排 ====
-    btn_row = st.columns([3, 3, 3, 6, 4])
+    btn_row = st.columns([3, 3, 3, 6, 5])
     with btn_row[0]:
         if st.button("機車"):
             st.session_state.transport_mode = "機車"
