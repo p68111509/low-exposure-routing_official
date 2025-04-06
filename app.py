@@ -364,7 +364,7 @@ with col2:
         import base64
 
         # PNG 圖片路徑
-        png_path = r"C:/Users/User/OneDrive/桌面/low_exposure_routing/空間資料/空汙推估圖/PM25_大台北2.png"
+        png_path = r"data/PM25_大台北2.png"
 
         # TWD97 座標
         left_twd97 = 278422.218791
