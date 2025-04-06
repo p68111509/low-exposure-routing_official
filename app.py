@@ -344,14 +344,14 @@ with col2:
             font-weight: 800;
             letter-spacing: 1.5px;
             color: black;
-            text-align: left;
+            text-align: center;
             margin-bottom: 0.5em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            text-align: center;
         ">
-             
+                
         </h1>
     """, unsafe_allow_html=True)
+
     st.markdown(
         """
         <div style='
@@ -360,23 +360,47 @@ with col2:
             font-weight: 600;
             color: #444444;
             text-align: center;
+            margin-bottom: 10px;
         '>
             通勤方式
         </div>
         """,
         unsafe_allow_html=True
     )
+
+    # 加入 CSS 讓按鈕置中顯示並調整字體
+    st.markdown("""
+        <style>
+        div.button-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        div.button-center button {
+            font-size: 14px !important;
+            padding: 4px 16px !important;
+            width: 120px;
+            text-align: center;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+    st.markdown('<div class="button-center">', unsafe_allow_html=True)
     if st.button("機車"):
         st.session_state.transport_mode = "機車"
-
     if st.button("單車"):
         st.session_state.transport_mode = "單車"
-
     if st.button("步行"):
         st.session_state.transport_mode = "步行"
+    st.markdown('</div>', unsafe_allow_html=True)
 
+    # PM2.5 濃度疊圖按鈕也置中
     with st.form(key="pm25_form"):
+        st.markdown('<div class="button-center">', unsafe_allow_html=True)
         submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
+        st.markdown('</div>', unsafe_allow_html=True)
+
         st.markdown(f"""
             <script>
             const btn = window.parent.document.querySelectorAll('button');
@@ -388,6 +412,7 @@ with col2:
             }});
             </script>
         """, unsafe_allow_html=True)
+
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
