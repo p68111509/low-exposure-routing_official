@@ -469,11 +469,11 @@ st.markdown(f"""
         <div class="logo-names">
             <div class="title">開發人員</div>
             許家瑋<br>
-            林祐如<br><br>
+            林祐如<br>
             <div class="title">指導老師</div>
             吳治達<br><br>
         </div>
         <img class="logo-img" src="data:image/jpg;base64,{logo1_base64}">
-        <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}"><br><br>
+        <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}">
     </div>
 """, unsafe_allow_html=True)
