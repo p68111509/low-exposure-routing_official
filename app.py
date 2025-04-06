@@ -184,7 +184,7 @@ with col1:
         st.markdown("""
             <style>
             div[data-baseweb="input"] {
-                margin-bottom: 4px !important;
+                margin-bottom: 0px !important;
             }
             </style>
         """, unsafe_allow_html=True)
