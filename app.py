@@ -195,7 +195,7 @@ with col1:
 
 
     # ==== 四個按鈕同一排 ====
-    btn_row = st.columns([3, 3, 3, 6, 2])
+    btn_row = st.columns([3, 3, 3, 6, 3])
     with btn_row[0]:
         if st.button("機車"):
             st.session_state.transport_mode = "機車"
@@ -395,7 +395,7 @@ with col2:
             zindex=1,
         ).add_to(m)
 
-    st_data = st_folium(m, width=600, height=550)
+    st_data = st_folium(m, width=600, height=500)
 
     if st_data and st_data.get("last_clicked"):
         latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
