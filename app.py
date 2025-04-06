@@ -310,7 +310,7 @@ with col1:
                     overflow: hidden;
                 }
                 .centered-table {
-                    font-size: 16px;  /* 原本是 18px，改小一點 */
+                    font-size: 14px;  /* 原本是 18px，改小一點 */
                     text-align: center;
                     width: 100%;
                     border-collapse: collapse;
@@ -318,7 +318,7 @@ with col1:
                     background-color: transparent;
                 }
                 .centered-table th, .centered-table td {
-                    padding: 8px;  /* 原本是 12px，改小一點 */
+                    padding: 6px;  /* 原本是 12px，改小一點 */
                     background-color: transparent;
                     color: black;
                     border: none;
