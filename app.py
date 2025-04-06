@@ -368,25 +368,27 @@ with col2:
         unsafe_allow_html=True
     )
 
-    # 加入 CSS 讓按鈕置中顯示並調整字體
+    # CSS：整個按鈕區塊水平置中，按鈕置中、字小
     st.markdown("""
         <style>
-        div.button-center {
+        .button-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1rem;
         }
-        div.button-center button {
+        .button-container button {
             font-size: 14px !important;
             padding: 4px 16px !important;
-            width: 120px;
+            min-width: 120px;
             text-align: center;
         }
         </style>
-        """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-    st.markdown('<div class="button-center">', unsafe_allow_html=True)
+    st.markdown('<div class="button-container">', unsafe_allow_html=True)
     if st.button("機車"):
         st.session_state.transport_mode = "機車"
     if st.button("單車"):
@@ -395,9 +397,8 @@ with col2:
         st.session_state.transport_mode = "步行"
     st.markdown('</div>', unsafe_allow_html=True)
 
-    # PM2.5 濃度疊圖按鈕也置中
     with st.form(key="pm25_form"):
-        st.markdown('<div class="button-center">', unsafe_allow_html=True)
+        st.markdown('<div class="button-container">', unsafe_allow_html=True)
         submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -415,6 +416,7 @@ with col2:
 
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
 
 with col3:
 
