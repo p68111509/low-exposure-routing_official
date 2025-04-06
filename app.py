@@ -135,14 +135,21 @@ with col1:
     if "points" not in st.session_state: st.session_state.points = []
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
-    st.markdown(
-        """
-        <h3 style='font-family: Microsoft JhengHei;'>
-            地址輸入 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於右圖雙擊選擇)</span>
-        </h3>
-        """,
-        unsafe_allow_html=True
-    )
+    subtile_row = st.columns([3, 2])
+    with subtile_row[0]:
+        st.markdown(
+            """
+            <h3 style='font-family: Microsoft JhengHei;'>
+                地址輸入 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於右圖雙擊選擇)</span>
+            </h3>
+            """,
+            unsafe_allow_html=True
+        )
+    with subtile_row[1]:
+        if st.button("🔃 重新選擇起終點"):
+            st.session_state.points = []
+            st.session_state.nodes = []
+            st.rerun()
 
     row1 = st.columns([3, 2])
     with row1[0]:
@@ -244,12 +251,6 @@ with col1:
             """, unsafe_allow_html=True)
             if submitted:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
-
-    with btn_row[4]:
-        if st.button("🔃 重新選擇起終點"):
-            st.session_state.points = []
-            st.session_state.nodes = []
-            st.rerun()
 
 
     # 統計表格
