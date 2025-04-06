@@ -195,7 +195,7 @@ with col1:
 
 
     # ==== 四個按鈕同一排 ====
-    btn_row = st.columns([1, 1, 1, 3, 3])
+    btn_row = st.columns([3, 3, 3, 3, 2])
     with btn_row[0]:
         if st.button("機車"):
             st.session_state.transport_mode = "機車"
