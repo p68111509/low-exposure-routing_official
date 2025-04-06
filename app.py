@@ -337,35 +337,31 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col2:
-    # 灰底區塊包住所有交通按鈕
     st.markdown("""
         <style>
         .transport-wrapper {
             background-color: #f5f5f5;
             border-radius: 12px;
-            padding: 16px 0;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             margin-bottom: 20px;
             box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
-            width: 140px;
-            margin-left: auto;
-            margin-right: auto;
         }
         .transport-button {
             font-size: 14px !important;
             padding: 6px 20px !important;
-            margin: 6px 0;
-            width: 100px;
+            margin: 4px 0;
+            width: 120px;
             text-align: center;
         }
         </style>
+
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    # 👇 包在灰底內的三個按鈕
+    # 🚘 三個交通方式按鈕（群組起來）
     if st.button("機車", key="moto"):
         st.session_state.transport_mode = "機車"
     if st.button("單車", key="bike"):
@@ -373,9 +369,9 @@ with col2:
     if st.button("步行", key="walk"):
         st.session_state.transport_mode = "步行"
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
 
-    # 🟣 PM2.5 濃度疊圖（在灰框外面）
+    # 🟣 PM2.5 按鈕（獨立放置）
     with st.form(key="pm25_form"):
         submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
 
@@ -393,7 +389,6 @@ with col2:
 
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
-
 
 
 
