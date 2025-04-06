@@ -361,7 +361,7 @@ with col2:
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
         
-    map_row = st.columns([2,8])
+    map_row = st.columns([1,8])
 
     with map_row[0]:
 
