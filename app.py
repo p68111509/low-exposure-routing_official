@@ -180,15 +180,6 @@ with col1:
 
     row1 = st.columns([3, 2])
     with row1[0]:
-        # 自訂樣式：縮小輸入框之間的間距
-        st.markdown("""
-            <style>
-            div[data-baseweb="input"] {
-                margin-bottom: 0px !important;
-            }
-            </style>
-        """, unsafe_allow_html=True)
-
         # 如果有從地圖設定的地址，先更新再畫輸入框
         if "set_start_address" in st.session_state:
             st.session_state.start_address = st.session_state.pop("set_start_address")
