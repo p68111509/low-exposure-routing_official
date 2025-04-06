@@ -127,7 +127,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([5, 1, 5, 1])
+col1, col2, col3, col4 = st.columns([5, 1, 5, 1])
 
 with col1:
     tile_row = st.columns([4, 1])
