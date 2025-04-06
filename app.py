@@ -143,7 +143,7 @@ with col1:
     with subtile_row[0]:
         st.markdown(
             """
-            <h3 style='font-family: Noto Sans TC;'>
+            <h3>
                 輸入地址 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於地圖雙擊)</span>
             </h3>
             """,
