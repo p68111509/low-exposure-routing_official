@@ -285,7 +285,7 @@ with col1:
     with table_row[0]:
             
         transport_mode = st.session_state.transport_mode
-        SPEED = {"機車": 55, "單車": 18, "步行": 5}[transport_mode]
+        SPEED = {"機車": 50, "單車": 18, "步行": 5}[transport_mode]
 
         if len(st.session_state.nodes) == 2:
             path1, dist1, expo1 = compute_path(G, *st.session_state.nodes, "length")
@@ -307,7 +307,7 @@ with col1:
                 improve = (expo_rate1 - expo_rate2) / expo_rate1 * 100
                 st.markdown(
                     f"""
-                    <div style='margin-top: 1em;'>
+                    <div style='margin-top: 0.1em;'>
                         <h3 style='
                             font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
                             font-size: 20px;
