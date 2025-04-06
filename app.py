@@ -211,8 +211,9 @@ with col1:
             st.session_state.nodes = []
             st.rerun()
 
+    # 統計表格
     table_row = st.columns([3,2])
-        with table_row[0]:
+    with table_row[0]:
             
         transport_mode = st.session_state.transport_mode
         SPEED = {"機車": 55, "單車": 18, "步行": 5}[transport_mode]
