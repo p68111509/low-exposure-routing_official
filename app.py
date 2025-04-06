@@ -132,7 +132,7 @@ col1, col2, col3 = st.columns([4, 4, 1])
 with col1:
     st.markdown("""
         <h1 style="
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            font-family: 'Microsoft JhengHei', sans-serif;
             font-size: 38px;
             font-weight: 800;
             letter-spacing: 1.5px;
