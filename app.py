@@ -337,11 +337,26 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col2:
+    st.markdown("""
+        <h1 style="
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: black;
+            text-align: left;
+            margin-bottom: 0.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+        ">
+             
+        </h1>
+    """, unsafe_allow_html=True)
     st.markdown(
         """
         <div style='
             font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-            font-size: 25px;
+            font-size: 15px;
             font-weight: 600;
             color: #444444;
             text-align: center;
