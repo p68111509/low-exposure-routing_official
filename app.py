@@ -112,16 +112,6 @@ def compute_path(G, start_node, end_node, weight):
 ### ========== Streamlit 介面 ========== ###
 st.set_page_config(layout="wide")
 
-# ✅ 加入整體縮放樣式（模擬縮小）
-st.markdown("""
-    <style>
-    [data-testid="stAppViewContainer"] {
-        transform: scale(0.9);   /* 90% 大小 */
-        transform-origin: top center;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 # ==== 自訂按鈕樣式（可選）====
 st.markdown("""
     <style>
@@ -405,7 +395,7 @@ with col2:
             zindex=1,
         ).add_to(m)
 
-    st_data = st_folium(m, width=650, height=550)
+    st_data = st_folium(m, width=600, height=550)
 
     if st_data and st_data.get("last_clicked"):
         latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
