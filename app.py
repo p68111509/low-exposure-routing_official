@@ -338,67 +338,47 @@ with col1:
 
 with col2:
     st.markdown("""
-        <h1 style="
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: black;
-            text-align: center;
-            margin-bottom: 0.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        ">
-                
-        </h1>
-    """, unsafe_allow_html=True)
-
-    st.markdown(
-        """
-        <div style='
-            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-            font-size: 15px;
-            font-weight: 600;
-            color: #444444;
-            text-align: center;
-            margin-bottom: 10px;
-        '>
-            通勤方式
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # CSS：整個按鈕區塊水平置中，按鈕置中、字小
-    st.markdown("""
         <style>
-        .button-container {
+        .centered-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 1rem;
+            justify-content: flex-start;
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin-top: 20px;
         }
-        .button-container button {
+        .transport-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #444444;
+            margin-bottom: 12px;
+        }
+        .transport-button {
             font-size: 14px !important;
-            padding: 4px 16px !important;
-            min-width: 120px;
+            padding: 6px 20px !important;
+            margin-bottom: 8px;
+            width: 120px;
             text-align: center;
         }
         </style>
+        <div class="centered-section">
+            <div class="transport-title">通勤方式</div>
+        </div>
     """, unsafe_allow_html=True)
 
-    st.markdown('<div class="button-container">', unsafe_allow_html=True)
-    if st.button("機車"):
+    # 🚘 三個交通方式按鈕
+    st.markdown('<div class="centered-section">', unsafe_allow_html=True)
+    if st.button("機車", key="moto"):
         st.session_state.transport_mode = "機車"
-    if st.button("單車"):
+    if st.button("單車", key="bike"):
         st.session_state.transport_mode = "單車"
-    if st.button("步行"):
+    if st.button("步行", key="walk"):
         st.session_state.transport_mode = "步行"
     st.markdown('</div>', unsafe_allow_html=True)
 
+    # 🟣 PM2.5 按鈕
     with st.form(key="pm25_form"):
-        st.markdown('<div class="button-container">', unsafe_allow_html=True)
+        st.markdown('<div class="centered-section">', unsafe_allow_html=True)
         submitted = st.form_submit_button("🟣 PM2.5濃度疊圖")
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -407,7 +387,7 @@ with col2:
             const btn = window.parent.document.querySelectorAll('button');
             btn.forEach(b => {{
                 if (b.innerText.includes('PM2.5濃度疊圖')) {{
-                    b.classList.add('pm25-toggle');
+                    b.classList.add('transport-button');
                     b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
                 }}
             }});
@@ -416,6 +396,7 @@ with col2:
 
         if submitted:
             st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
 
 
 with col3:
