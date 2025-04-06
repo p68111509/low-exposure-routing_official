@@ -344,7 +344,7 @@ with col1:
                     text-align: center;
                     width: 100%;
                     border-collapse: collapse;
-                    font-family: 'Microsoft JhengHei', sans-serif;
+                    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
                     background-color: transparent;
                 }
                 .centered-table th, .centered-table td {
@@ -482,7 +482,7 @@ st.markdown(f"""
         gap: 0px;
         z-index: 1000;
         align-items: center;
-        font-family: 'Microsoft JhengHei', sans-serif;
+        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
     }}
     .logo-names {{
         text-align: center;
