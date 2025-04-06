@@ -173,7 +173,7 @@ with col1:
             unsafe_allow_html=True
         )
     with subtile_row[1]:
-        if st.button("🔃 重新選擇"):
+        if st.button("🔃 重新選擇喵"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
