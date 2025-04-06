@@ -140,6 +140,7 @@ with col1:
             text-align: left;
             margin-bottom: 0.5em;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
         ">
             Geo-AI 路徑好空氣
         </h1>
