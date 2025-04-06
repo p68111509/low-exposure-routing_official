@@ -340,7 +340,7 @@ with col2:
     st.markdown("""
         <style>
         .transport-wrapper {
-            background-color: #444444;
+            background-color: #bbbbbb;
             border-radius: 12px;
             padding: 16px;
             display: flex;
