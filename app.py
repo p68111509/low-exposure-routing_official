@@ -399,7 +399,7 @@ with col2:
             zindex=1,
         ).add_to(m)
 
-    st_data = st_folium(m, width=600, height=500)
+    st_data = st_folium(m, width=600, height=700)
 
     if st_data and st_data.get("last_clicked"):
         latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
