@@ -144,7 +144,7 @@ with col1:
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
                 text-align: center;
             ">
-                Geo-AI 路徑好空氣
+                Geo-AI 路徑好空氣喵
             </h1>
         """, unsafe_allow_html=True)
 
