@@ -130,21 +130,23 @@ st.markdown("""
 col1, col2, col3 = st.columns([4, 4, 1])
 
 with col1:
-    st.markdown("""
-        <h1 style="
-            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            font-size: 38px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            color: black;
-            text-align: left;
-            margin-bottom: 0.5em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            text-align: center;
-        ">
-            Geo-AI 路徑好空氣
-        </h1>
-    """, unsafe_allow_html=True)
+    tile_row = st.columns([4, 1])
+    with tile_row[0]:
+        st.markdown("""
+            <h1 style="
+                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+                font-size: 38px;
+                font-weight: 800;
+                letter-spacing: 1.5px;
+                color: black;
+                text-align: left;
+                margin-bottom: 0.5em;
+                text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+                text-align: center;
+            ">
+                Geo-AI 路徑好空氣
+            </h1>
+        """, unsafe_allow_html=True)
 
 
     if "transport_mode" not in st.session_state:
