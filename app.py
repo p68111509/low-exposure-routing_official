@@ -157,12 +157,18 @@ with col1:
     with subtile_row[0]:
         st.markdown(
             """
-            <h3 style='font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;'>
+            <div style='
+                font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+                font-size: 18px;
+                font-weight: 600;
+                color: #444444;
+            '>
                 輸入地址 <span style='font-size: 0.8em; color: #bbbbbb;'>(或於地圖雙擊)</span>
-            </h3>
+            </div>
             """,
             unsafe_allow_html=True
         )
+
     with subtile_row[1]:
         if st.button("🔃 重新選擇"):
             st.session_state.points = []
