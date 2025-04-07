@@ -589,7 +589,7 @@ with col3:
                 zindex=1,
             ).add_to(m)
 
-        st_data = st_folium(m, width=600, height=600)
+        st_data = st_folium(m, width=600, height=450)
 
         if not st.session_state.disable_inputs and st_data and st_data.get("last_clicked"):
             latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
