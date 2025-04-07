@@ -213,7 +213,7 @@ with col1:
         st.markdown("""
         <style>
         .select-label-box {
-            font-size: 18px;
+            font-size: 12px;
             font-weight: 600;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             color: #333333;
@@ -222,7 +222,7 @@ with col1:
             padding: 10px 16px;
             text-align: center;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         </style>
         <div class="select-label-box">交通方式</div>
