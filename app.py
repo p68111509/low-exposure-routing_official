@@ -701,13 +701,9 @@ st.markdown("""
             聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>｜GitHub 專案：
             <a href="https://github.com/p68111509/low-exposure-routing_demo" target="_blank">low-exposure-routing_demo</a>
         </p>
-        <p style="margin-top: 6px; margin-bottom: 12px;">
+        <p style="margin-top: 6px; margin-bottom: 0px;">
             本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
         </p>
-        # <div style="display: flex; justify-content: center; gap: 20px;">
-        #     <img src="data:image/jpg;base64,{logo1_base64}" style="height: 60px; opacity: 0.95;">
-        #     <img src="data:image/jpg;base64,{logo2_base64}" style="height: 60px; opacity: 0.95;">
-        # </div>
     </div>
 """, unsafe_allow_html=True)
 
