@@ -206,41 +206,40 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([2, 1, 1])
+    row2 = st.columns([3, 1, 1])
     with row2[0]:
-        from st_custom_radio import st_custom_radio
-
         st.markdown("""
         <style>
-        .custom-radio .stButton>button {
-            background-color: white;
-            border: 2px solid #ccc;
-            font-size: 18px;
+        .custom-radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 4px;
+        }
+        .custom-radio-group label {
+            font-size: 20px;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             font-weight: 600;
-            color: #333;
-            padding: 8px 20px;
-            border-radius: 8px;
-            margin-right: 12px;
+            color: #333333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
-        .custom-radio .stButton>button:hover {
-            border-color: #cc3333;
-        }
-        .custom-radio .stButton>button:focus {
-            background-color: #cc3333;
-            color: white;
+        .custom-radio-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
+            transform: scale(1.3);
         }
         </style>
+
+        <div class="custom-radio-group">
+            <label><input type="radio" name="mode" value="機車">機車</label>
+            <label><input type="radio" name="mode" value="單車">單車</label>
+            <label><input type="radio" name="mode" value="步行">步行</label>
+        </div>
         """, unsafe_allow_html=True)
-
-        mode = st_custom_radio(
-            options=["機車", "單車", "步行"],
-            default=st.session_state.get("transport_mode", "機車"),
-            key="transport_mode",
-            orientation="horizontal",
-            container_css_class="custom-radio"
-        )
-
 
 
 
