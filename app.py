@@ -394,10 +394,28 @@ with col1:
 
 with col3:
     # 操作說明
+    st.markdown("""
+    <style>
+    /* expander 整體外框（包含標題區） */
+    div.streamlit-expander {
+        background-color: #cccccc !important;  /* ✅ 改成你想要的底色 */
+        border-radius: 10px !important;
+    }
+
+    /* expander 標題列 */
+    div.streamlit-expanderHeader {
+        font-size: 20px;
+        font-weight: 700;
+        color: black;
+        text-align: center;
+        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     with st.expander("🛠️ 操作說明"):
         st.markdown("""
             <div style="
-                background-color: #999999;
+                background-color: #eeeeee;
                 padding: 16px;
                 border-radius: 10px;
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
