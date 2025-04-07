@@ -208,17 +208,29 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([2, 1, 1])
+    row2 = st.columns([1, 1, 1, 1])
     with row2[0]:
         st.markdown("""
         <style>
-        .select-label {
+        .select-label-box {
             font-size: 18px;
             font-weight: 600;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             color: #333333;
-            margin-bottom: 4px;
+            background-color: #eeeeee;
+            border-radius: 10px;
+            padding: 10px 16px;
+            text-align: center;
+            width: 100%;
+            margin-top: 6px;
         }
+        </style>
+        <div class="select-label-box">交通方式</div>
+        """, unsafe_allow_html=True)
+
+    with row2[1]:
+        st.markdown("""
+        <style>
         div[data-baseweb="select"] > div {
             font-size: 16px !important;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
@@ -226,21 +238,17 @@ with col1:
         </style>
         """, unsafe_allow_html=True)
 
-        st.markdown('<div class="select-label">交通方式：</div>', unsafe_allow_html=True)
-
         selected_mode = st.selectbox(
             label="交通方式",
             options=["機車", "單車", "步行"],
             index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
             label_visibility="collapsed",
         )
-
         st.session_state.transport_mode = selected_mode
 
 
 
-
-    with row2[1]:
+    with row2[2]:
         disabled = st.session_state.disable_inputs  # 按鈕是否鎖定
         if st.button("🧭 路徑解算", disabled=st.session_state.disable_inputs):
             if not start_address.strip():
@@ -279,7 +287,7 @@ with col1:
                                 st.rerun()
 
 
-    with row2[2]:
+    with row2[3]:
         if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
