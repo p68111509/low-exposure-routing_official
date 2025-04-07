@@ -89,7 +89,10 @@ def find_nearest_node(G, lat, lon, max_dist=0.01):
 # ========== 路徑計算 ==========
 def compute_path(G, start_node, end_node, weight):
     try:
-        path = nx.shortest_path(G, start_node, end_node, weight=lambda u, v, d: d.get("attr_dict", {}).get(weight, 0))
+        path = nx.shortest_path(
+            G, start_node, end_node,
+            weight=lambda u, v, d: max(0, d.get("attr_dict", {}).get(weight, 0))
+        )
     except nx.NetworkXNoPath:
         return None, 0, 0
 
@@ -384,7 +387,7 @@ with col1:
                     overflow: hidden;
                 }
                 .centered-table {
-                    font-size: 14px;  /* 原本是 18px，改小一點 */
+                    font-size: 16px;  /* 原本是 18px，改小一點 */
                     text-align: center;
                     width: 100%;
                     border-collapse: collapse;
@@ -392,7 +395,7 @@ with col1:
                     background-color: transparent;
                 }
                 .centered-table th, .centered-table td {
-                    padding: 6px;  /* 原本是 12px，改小一點 */
+                    padding: 8px;  /* 原本是 12px，改小一點 */
                     background-color: transparent;
                     color: black;
                     border: none;
