@@ -225,7 +225,7 @@ with col1:
             margin-top: 14px;
         }
         </style>
-        <div class="select-label-box">交通方式：</div>
+        <div class="select-label-box">交通方式</div>
         """, unsafe_allow_html=True)
 
     with row2[1]:
@@ -250,6 +250,14 @@ with col1:
 
     with row2[2]:
         disabled = st.session_state.disable_inputs  # 按鈕是否鎖定
+        st.markdown("""
+            <style>
+            /* 根據按鈕文字選取目標按鈕 */
+            button:has(> div:contains("🧭 路徑解算")) {
+                margin-top: 20px;
+            }
+            </style>
+        """, unsafe_allow_html=True)
         if st.button("🧭 路徑解算", disabled=st.session_state.disable_inputs):
             if not start_address.strip():
                 st.warning("⚠️ 請輸入起點地址")
