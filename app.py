@@ -129,35 +129,32 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([6, 6, 1])
+col1, col2, col3, col4 = st.columns([6, 0.5, 6, 1])
 
 with col1:
-    tile_row = st.columns([5, 1])
-    with tile_row[0]: # 標題
-        st.markdown("""
-            <h1 style="
-                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 32px;
-                font-weight: 800;
-                letter-spacing: 1.5px;
-                color: black;
-                text-align: center;
-                margin-bottom: 0px;
-                line-height: 1.2;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+
+    st.markdown("""
+        <h1 style="
+            font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: black;
+            text-align: center;
+            margin-bottom: 0px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        ">
+            Geo-AI 路徑好空氣<br>
+            <span style="
+                font-size: 16px;
+                font-weight: 500;
+                color: #666666;
             ">
-                Geo-AI 路徑好空氣<br>
-                <span style="
-                    font-size: 16px;
-                    font-weight: 500;
-                    color: #666666;
-                ">
-                    台北市 & 新北市<br>
-                </span>
-            </h1>
-        """, unsafe_allow_html=True)
-
-
+                台北市 & 新北市<br>
+            </span>
+        </h1>
+    """, unsafe_allow_html=True)
 
     if "transport_mode" not in st.session_state:
         st.session_state.transport_mode = "機車"
@@ -363,7 +360,7 @@ with col1:
                 </style>
             """, unsafe_allow_html=True)
 
-with col2:
+with col3:
     st.markdown("""
         <style>
         .transport-wrapper {
