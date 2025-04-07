@@ -117,6 +117,8 @@ st.set_page_config(layout="wide")
 # 初始化狀態（放這裡最安全）
 if "disable_inputs" not in st.session_state:
     st.session_state.disable_inputs = False
+if "has_routed" not in st.session_state:
+    st.session_state.has_routed = False
 if "show_pm25_layer" not in st.session_state:
     st.session_state.show_pm25_layer = False
 
@@ -290,6 +292,7 @@ with col1:
                                     list(G.nodes[end_node]["latlon"]),
                                 ]
                                 st.session_state.nodes = [start_node, end_node]
+                                st.session_state.has_routed = True
                                 # 鎖定所有輸入
                                 st.session_state.disable_inputs = True
                                 st.rerun()
@@ -308,6 +311,7 @@ with col1:
             st.session_state.points = []
             st.session_state.nodes = []
             st.session_state.disable_inputs = False  # ✅ 解鎖功能
+            st.session_state.has_routed = False
             st.rerun()
 
 
@@ -341,7 +345,7 @@ with col1:
         transport_mode = st.session_state.transport_mode
         SPEED = {"機車": 45, "單車": 18, "步行": 5}[transport_mode]
 
-        if len(st.session_state.nodes) == 2:
+        if st.session_state.has_routed and len(st.session_state.nodes) == 2:
             path1, dist1, expo1 = compute_path(G, *st.session_state.nodes, "length")
             path2, dist2, expo2 = compute_path(G, *st.session_state.nodes, "exposure")
             dist_km1, dist_km2 = dist1 / 1000, dist2 / 1000
