@@ -214,7 +214,7 @@ with col1:
                 display: inline-flex !important;
                 align-items: center;
                 font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 15px;
+                font-size: 60px;
                 font-weight: 600;
                 color: #333;
                 margin-right: 16px;
