@@ -361,6 +361,9 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col2:
+
+
+    map_row = st.columns([2, 8])
     st.markdown("""
         <style>
         .transport-wrapper {
@@ -398,9 +401,6 @@ with col2:
 
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
-
-    map_row = st.columns([1, 8])
-
     with map_row[0]:
 
         # 🚘 三個交通方式按鈕（群組起來）
