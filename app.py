@@ -206,7 +206,7 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([3, 1, 1, 1])
+    row2 = st.columns([2, 1, 1])
     with row2[0]:
         st.markdown("""
         <style>
@@ -244,45 +244,42 @@ with col1:
 
 
     with row2[1]:
-        # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("🟢 確定起點"):
-            if start_address.strip():
-                result = geocode(start_address)
-                if result:
-                    lat, lon = result
-                    nearest_node = find_nearest_node(G, lat, lon)
-                    if nearest_node:
-                        lat_, lon_ = G.nodes[nearest_node]["latlon"]
-                        st.session_state.points = [[lat_, lon_]]
-                        st.session_state.nodes = [nearest_node]
-                        st.rerun()
-                    else:
-                        st.warning("⚠️ 離路網太遠")
+        if st.button("🧭 路徑解算"):
+            if not start_address.strip():
+                st.warning("⚠️ 請輸入起點地址")
+            elif not end_address.strip():
+                st.warning("⚠️ 請輸入終點地址")
             else:
-                st.warning("請輸入起點地址")
-        st.markdown("</div>", unsafe_allow_html=True)
+                # 起點處理
+                start_result = geocode(start_address)
+                if not start_result:
+                    st.warning("⚠️ 起點地址查詢失敗")
+                else:
+                    start_lat, start_lon = start_result
+                    start_node = find_nearest_node(G, start_lat, start_lon)
+                    if not start_node:
+                        st.warning("⚠️ 起點離路網太遠")
+                    else:
+                        # 終點處理
+                        end_result = geocode(end_address)
+                        if not end_result:
+                            st.warning("⚠️ 終點地址查詢失敗")
+                        else:
+                            end_lat, end_lon = end_result
+                            end_node = find_nearest_node(G, end_lat, end_lon)
+                            if not end_node:
+                                st.warning("⚠️ 終點離路網太遠")
+                            else:
+                                # 一切成功，儲存節點與位置
+                                st.session_state.points = [
+                                    list(G.nodes[start_node]["latlon"]),
+                                    list(G.nodes[end_node]["latlon"]),
+                                ]
+                                st.session_state.nodes = [start_node, end_node]
+                                st.rerun()
+
 
     with row2[2]:
-        # st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("🔴 確定終點"):
-            if end_address.strip():
-                result = geocode(end_address)
-                if result:
-                    lat, lon = result
-                    nearest_node = find_nearest_node(G, lat, lon)
-                    if nearest_node:
-                        lat_, lon_ = G.nodes[nearest_node]["latlon"]
-                        if len(st.session_state.points) == 1:
-                            st.session_state.points.append([lat_, lon_])
-                            st.session_state.nodes.append(nearest_node)
-                            st.rerun()
-                        else:
-                            st.warning("請先設定起點")
-            else:
-                st.warning("請輸入終點地址")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with row2[3]:
         if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
