@@ -415,6 +415,7 @@ with col3:
         color: #444444;
         line-height: 1.6;
         margin-top: 10px;
+        margin-bottom: 20px;
     }
     .details-wrapper {
         margin-bottom: 20px;
