@@ -338,56 +338,53 @@ with col1:
     """, unsafe_allow_html=True)
 
 
-    # 統計表格
-    table_row = st.columns([4,1])
-    with table_row[0]:
-            
-        transport_mode = st.session_state.transport_mode
-        SPEED = {"機車": 45, "單車": 18, "步行": 5}[transport_mode]
+    # 統計表格          
+    transport_mode = st.session_state.transport_mode
+    SPEED = {"機車": 45, "單車": 18, "步行": 5}[transport_mode]
 
-        if st.session_state.has_routed and len(st.session_state.nodes) == 2:
-            path1, dist1, expo1 = compute_path(G, *st.session_state.nodes, "length")
-            path2, dist2, expo2 = compute_path(G, *st.session_state.nodes, "exposure")
-            dist_km1, dist_km2 = dist1 / 1000, dist2 / 1000
-            time_min1 = (dist_km1 / SPEED) * 60
-            time_min2 = (dist_km2 / SPEED) * 60
-            expo_rate1 = expo1 / time_min1 if time_min1 else 0
-            expo_rate2 = expo2 / time_min2 if time_min2 else 0
+    if st.session_state.has_routed and len(st.session_state.nodes) == 2:
+        path1, dist1, expo1 = compute_path(G, *st.session_state.nodes, "length")
+        path2, dist2, expo2 = compute_path(G, *st.session_state.nodes, "exposure")
+        dist_km1, dist_km2 = dist1 / 1000, dist2 / 1000
+        time_min1 = (dist_km1 / SPEED) * 60
+        time_min2 = (dist_km2 / SPEED) * 60
+        expo_rate1 = expo1 / time_min1 if time_min1 else 0
+        expo_rate2 = expo2 / time_min2 if time_min2 else 0
 
-            df = pd.DataFrame({
-                "路徑": ["最短路徑", "最低暴露路徑"],
-                "總距離(km)": [round(dist_km1, 2), round(dist_km2, 2)],
-                "預估時間(min)": [round(time_min1, 2), round(time_min2, 2)],
-                "每分鐘暴露量 (μg/m3)": [round(expo_rate1, 2), round(expo_rate2, 2)]
-            })
+        df = pd.DataFrame({
+            "路徑": ["最短路徑", "最低暴露路徑"],
+            "總距離(km)": [round(dist_km1, 2), round(dist_km2, 2)],
+            "預估時間(min)": [round(time_min1, 2), round(time_min2, 2)],
+            "每分鐘暴露量 (μg/m3)": [round(expo_rate1, 2), round(expo_rate2, 2)]
+        })
 
-            if expo1 > 0:
-                improve = (expo_rate1 - expo_rate2) / expo_rate1 * 100
-                st.markdown(
-                    f"""
-                    <div style='margin-top: 0.1em;'>
-                        <h3 style='
-                            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-                            font-size: 20px;
-                            font-weight: 600;
-                            color: #444444;
-                            text-align: center;
-                        '>
-                            統計結果：改善率 {improve:.1f}%
-                        </h3>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-            
+        if expo1 > 0:
+            improve = (expo_rate1 - expo_rate2) / expo_rate1 * 100
             st.markdown(
-                f"<div class='table-wrapper'>{df.set_index('路徑').T.to_html(classes='centered-table', border=0)}</div>",
+                f"""
+                <div style='margin-top: 0.1em;'>
+                    <h3 style='
+                        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: #444444;
+                        text-align: center;
+                    '>
+                        統計結果：改善率 {improve:.1f}%
+                    </h3>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
+        
+        st.markdown(
+            f"<div class='table-wrapper'>{df.set_index('路徑').T.to_html(classes='centered-table', border=0)}</div>",
+            unsafe_allow_html=True
+        )
 
 
-            # 加入 CSS：保留圓角邊框、移除內部格線、維持白字與透明背景（整體縮小一點）
-            st.markdown("""
+        # 加入 CSS：保留圓角邊框、移除內部格線、維持白字與透明背景（整體縮小一點）
+        st.markdown("""
                 <style>
                 .table-wrapper {
                     width: 90%;
