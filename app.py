@@ -415,7 +415,7 @@ with col2:
                 font-weight: 600;
             }
             .legend-wrapper {
-                margin-top: 8px;
+                margin-top: 16px;
                 text-align: center;
                 width: 100%;
             }
@@ -434,54 +434,37 @@ with col2:
             </style>
         """, unsafe_allow_html=True)
 
-        # 三顆按鈕：使用三欄 + 按鈕撐滿欄位
-        btn_cols = st.columns(3)
+        # 🚘 三個交通方式按鈕（群組起來）
+        if st.button("機車", key="moto"):
+            st.session_state.transport_mode = "機車"
+        if st.button("單車", key="bike"):
+            st.session_state.transport_mode = "單車"
+        if st.button("步行", key="walk"):
+            st.session_state.transport_mode = "步行"
 
-        with btn_cols[0]:
-            if st.button("機車", key="moto"):
-                st.session_state.transport_mode = "機車"
-        with btn_cols[1]:
-            if st.button("單車", key="bike"):
-                st.session_state.transport_mode = "單車"
-        with btn_cols[2]:
-            if st.button("步行", key="walk"):
-                st.session_state.transport_mode = "步行"
-
-        # 加上 JS 套樣式
-        st.markdown("""
-            <script>
-            const btns = window.parent.document.querySelectorAll('button');
-            btns.forEach(b => {
-                if (["機車", "單車", "步行"].includes(b.innerText.trim())) {
-                    b.classList.add('full-width-button');
-                }
-            });
-            </script>
-        """, unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
 
         # 🟣 PM2.5 按鈕（獨立放置）
         with st.form(key="pm25_form"):
-            submitted = st.form_submit_button("空汙\n疊圖")
-
+            submitted = st.form_submit_button("空汙疊圖")
             st.markdown(f"""
                 <script>
                 const btn = window.parent.document.querySelectorAll('button');
                 btn.forEach(b => {{
-                    if (b.innerText.includes('空汙')) {{
+                    if (b.innerText.includes('空汙疊圖')) {{
                         b.classList.add('full-width-button');
                         b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
                     }}
                 }});
                 </script>
             """, unsafe_allow_html=True)
-
             if submitted:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
-        # 圖例
+        # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟧<br>低暴路徑</div><br>
+                <div class="legend-label">🟧<br>低暴路徑</div>
                 <div class="legend-label">🟦<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
