@@ -8,4 +8,4 @@ shapely
 pyproj
 requests
 jinja2
-git+https://github.com/andfanilo/st-custom-radio.git
+
