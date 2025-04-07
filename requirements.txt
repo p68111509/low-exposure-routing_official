@@ -8,3 +8,4 @@ shapely
 pyproj
 requests
 jinja2
+st-custom-radio
