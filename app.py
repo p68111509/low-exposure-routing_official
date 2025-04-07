@@ -247,7 +247,7 @@ with col1:
 
     with row2[1]:
         disabled = st.session_state.disable_inputs  # 按鈕是否鎖定
-        if st.button("🧭 路徑解算"):
+        if st.button("🧭 路徑解算", disabled=st.session_state.disable_inputs):
             if not start_address.strip():
                 st.warning("⚠️ 請輸入起點地址")
             elif not end_address.strip():
@@ -320,7 +320,7 @@ with col1:
     with table_row[0]:
             
         transport_mode = st.session_state.transport_mode
-        SPEED = {"機車": 50, "單車": 18, "步行": 5}[transport_mode]
+        SPEED = {"機車": 45, "單車": 18, "步行": 5}[transport_mode]
 
         if len(st.session_state.nodes) == 2:
             path1, dist1, expo1 = compute_path(G, *st.session_state.nodes, "length")
