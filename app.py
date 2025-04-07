@@ -426,7 +426,7 @@ with col3:
         .transport-wrapper {
             background-color: #bbbbbb;
             border-radius: 12px;
-            padding: 1px;
+            padding: 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
