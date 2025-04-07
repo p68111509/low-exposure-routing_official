@@ -434,11 +434,38 @@ with col3:
 
     map_row = st.columns([2, 1, 1])
     
-    with map_row[0]:
-        ################
-        st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
+map_row = st.columns([1.5, 3, 3])
 
-        # PM2.5 按鈕（獨立放置）
+    with map_row[0]:
+        st.markdown("""
+            <style>
+            form {
+                margin: 0 !important;
+            }
+            .full-width-button {
+                width: 100%;
+                font-size: 14px !important;
+                padding: 8px 0 !important;
+                margin: 0 !important;
+                text-align: center;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                font-weight: 600;
+            }
+            .legend-wrapper {
+                margin: 0 !important;
+            }
+            .legend-label {
+                font-size: 14px;
+                font-weight: 600;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                padding: 6px 12px;
+                background-color: #eeeeee;
+                border-radius: 8px;
+                display: inline-block;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
         with st.form(key="pm25_form"):
             submitted = st.form_submit_button("空汙疊圖")
             st.markdown(f"""
@@ -456,19 +483,11 @@ with col3:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
     with map_row[1]:
-        # 圖例：不可點擊的樣式展示（縮小空白）
-        st.markdown("""
-            <div class="legend-wrapper">
-                <div class="legend-label">🟧低暴路徑</div>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""<div class="legend-wrapper"><div class="legend-label">🟧低暴路徑</div></div>""", unsafe_allow_html=True)
+
     with map_row[2]:
-        # 圖例：不可點擊的樣式展示（縮小空白）
-        st.markdown("""
-            <div class="legend-wrapper">
-                <div class="legend-label">🟦最短路徑</div>
-            </div>
-        """, unsafe_allow_html=True)
+        st.markdown("""<div class="legend-wrapper"><div class="legend-label">🟦最短路徑</div></div>""", unsafe_allow_html=True)
+
 
     
         
