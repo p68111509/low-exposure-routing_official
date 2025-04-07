@@ -191,7 +191,7 @@ with col1:
         </style>
 
         <div class="input-header-box">
-            輸入地址 / 於地圖雙擊
+            輸入地標或地址 / 於地圖點擊
         </div>
         """,
         unsafe_allow_html=True
