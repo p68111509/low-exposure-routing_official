@@ -399,7 +399,7 @@ with col2:
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    map_row = st.columns([2, 9])
+    map_row = st.columns([1.5, 9])
     
     with map_row[0]:
 
