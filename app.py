@@ -434,7 +434,7 @@ with col3:
 
     map_row = st.columns([2, 1, 1])
 
-    with map_row[0]:
+    # with map_row[0]:
         # st.markdown("""
         #     <style>
         #     form {
