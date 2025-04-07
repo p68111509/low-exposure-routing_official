@@ -432,146 +432,157 @@ with col3:
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    map_row = st.columns([2, 1, 1])
+    map_row = st.columns([1.5, 9])
+    
+    with map_row[0]:
 
-    # with map_row[0]:
-        # st.markdown("""
-        #     <style>
-        #     form {
-        #         margin: 0 !important;
-        #     }
-        #     .full-width-button {
-        #         width: 100%;
-        #         font-size: 14px !important;
-        #         padding: 8px 0 !important;
-        #         margin: 0 !important;
-        #         text-align: center;
-        #         font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-        #         font-weight: 600;
-        #     }
-        #     .legend-wrapper {
-        #         margin: 0 !important;
-        #     }
-        #     .legend-label {
-        #         font-size: 14px;
-        #         font-weight: 600;
-        #         font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-        #         padding: 6px 12px;
-        #         background-color: #eeeeee;
-        #         border-radius: 8px;
-        #         display: inline-block;
-        #     }
-        #     </style>
-        # """, unsafe_allow_html=True)
+        st.markdown("""
+            <style>
+            .full-width-button {
+                width: 100%;
+                font-size: 14px !important;
+                padding: 8px 0 !important;
+                margin-bottom: 10px;
+                text-align: center;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                font-weight: 600;
+            }
+            .legend-wrapper {
+                margin-top: 16px;
+                text-align: center;
+                width: 100%;
+            }
+            .legend-label {
+                font-size: 14px;
+                font-weight: 600;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                margin: 6px auto;
+                padding: 10px 0;
+                border-radius: 8px;
+                background-color: #eeeeee;
+                display: block;
+                width: 100%;
+                line-height: 1.4;
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
-        # with st.form(key="pm25_form"):
-        #     submitted = st.form_submit_button("空汙疊圖喵")
-        #     st.markdown(f"""
-        #         <script>
-        #         const btn = window.parent.document.querySelectorAll('button');
-        #         btn.forEach(b => {{
-        #             if (b.innerText.includes('空汙疊圖')) {{
-        #                 b.classList.add('full-width-button');
-        #                 b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
-        #             }}
-        #         }});
-        #         </script>
-        #     """, unsafe_allow_html=True)
-        #     if submitted:
-        #         st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+        ################
+        st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
+
+        # 🟣 PM2.5 按鈕（獨立放置）
+        with st.form(key="pm25_form"):
+            submitted = st.form_submit_button("空汙疊圖")
+            st.markdown(f"""
+                <script>
+                const btn = window.parent.document.querySelectorAll('button');
+                btn.forEach(b => {{
+                    if (b.innerText.includes('空汙疊圖')) {{
+                        b.classList.add('full-width-button');
+                        b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
+                    }}
+                }});
+                </script>
+            """, unsafe_allow_html=True)
+            if submitted:
+                st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
+        # 圖例：不可點擊的樣式展示（縮小空白）
+        st.markdown("""
+            <div class="legend-wrapper">
+                <div class="legend-label">🟧<br>低暴路徑</div>
+                <div class="legend-label">🟦<br>最短路徑</div>
+            </div>
+        """, unsafe_allow_html=True)
+
+
+
 
     with map_row[1]:
-        st.markdown("""<div class="legend-wrapper"><div class="legend-label">🟧低暴路徑</div></div>""", unsafe_allow_html=True)
-
-    with map_row[2]:
-        st.markdown("""<div class="legend-wrapper"><div class="legend-label">🟦最短路徑</div></div>""", unsafe_allow_html=True)
-
-
-    
         
-    m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
-    m.add_child(DisableDoubleClickZoom())
+        m = folium.Map(location=map_center, zoom_start=13, control_scale=True)
+        m.add_child(DisableDoubleClickZoom())
 
-    for i, pt in enumerate(st.session_state.points):
-        label = "起點" if i == 0 else "終點"
-        color = "green" if i == 0 else "red"
-        folium.Marker(location=pt, tooltip=label, icon=folium.Icon(color=color)).add_to(m)
+        for i, pt in enumerate(st.session_state.points):
+            label = "起點" if i == 0 else "終點"
+            color = "green" if i == 0 else "red"
+            folium.Marker(location=pt, tooltip=label, icon=folium.Icon(color=color)).add_to(m)
 
-    if len(st.session_state.nodes) == 2:
-        for path, color, label in [
-            (compute_path(G, *st.session_state.nodes, "length")[0], "blue", "最短路徑"),
-            (compute_path(G, *st.session_state.nodes, "exposure")[0], "orange", "最低暴露路徑")
-        ]:
-            for u, v in zip(path[:-1], path[1:]):
-                edge_data = G.get_edge_data(u, v)
-                if edge_data:
-                    for d in edge_data.values():
-                        geom = d.get("attr_dict", {}).get("geometry")
-                        if geom:
-                            coords = [(lat, lon) for lon, lat in geom.coords]
-                            folium.PolyLine(coords, color=color, weight=4, tooltip=label).add_to(m)
-                        else:
-                            pt1 = G.nodes[u]["latlon"]
-                            pt2 = G.nodes[v]["latlon"]
-                            folium.PolyLine([pt1, pt2], color=color, weight=4, tooltip=label).add_to(m)
+        if len(st.session_state.nodes) == 2:
+            for path, color, label in [
+                (compute_path(G, *st.session_state.nodes, "length")[0], "blue", "最短路徑"),
+                (compute_path(G, *st.session_state.nodes, "exposure")[0], "orange", "最低暴露路徑")
+            ]:
+                for u, v in zip(path[:-1], path[1:]):
+                    edge_data = G.get_edge_data(u, v)
+                    if edge_data:
+                        for d in edge_data.values():
+                            geom = d.get("attr_dict", {}).get("geometry")
+                            if geom:
+                                coords = [(lat, lon) for lon, lat in geom.coords]
+                                folium.PolyLine(coords, color=color, weight=4, tooltip=label).add_to(m)
+                            else:
+                                pt1 = G.nodes[u]["latlon"]
+                                pt2 = G.nodes[v]["latlon"]
+                                folium.PolyLine([pt1, pt2], color=color, weight=4, tooltip=label).add_to(m)
 
-    # 加入 PM2.5 疊圖層（PNG）
-    if st.session_state.show_pm25_layer:
-        from folium.raster_layers import ImageOverlay
-        import base64
+        # 加入 PM2.5 疊圖層（PNG）
+        if st.session_state.show_pm25_layer:
+            from folium.raster_layers import ImageOverlay
+            import base64
 
-        # PNG 圖片路徑
-        png_path = r"data/PM25_大台北2.png"
+            # PNG 圖片路徑
+            png_path = r"data/PM25_大台北2.png"
 
-        # TWD97 座標
-        left_twd97 = 278422.218791
-        right_twd97 = 351672.218791
-        bottom_twd97 = 2729604.773102
-        top_twd97 = 2799454.773102
+            # TWD97 座標
+            left_twd97 = 278422.218791
+            right_twd97 = 351672.218791
+            bottom_twd97 = 2729604.773102
+            top_twd97 = 2799454.773102
 
-        # 轉換 TWD97 (EPSG:3826) → WGS84 (EPSG:4326)
-        from pyproj import Transformer
-        transformer = Transformer.from_crs("EPSG:3826", "EPSG:4326", always_xy=True)
-        left_lon, bottom_lat = transformer.transform(left_twd97, bottom_twd97)
-        right_lon, top_lat = transformer.transform(right_twd97, top_twd97)
+            # 轉換 TWD97 (EPSG:3826) → WGS84 (EPSG:4326)
+            from pyproj import Transformer
+            transformer = Transformer.from_crs("EPSG:3826", "EPSG:4326", always_xy=True)
+            left_lon, bottom_lat = transformer.transform(left_twd97, bottom_twd97)
+            right_lon, top_lat = transformer.transform(right_twd97, top_twd97)
 
-        # 圖片轉 base64
-        with open(png_path, "rb") as f:
-            png_base64 = base64.b64encode(f.read()).decode("utf-8")
+            # 圖片轉 base64
+            with open(png_path, "rb") as f:
+                png_base64 = base64.b64encode(f.read()).decode("utf-8")
 
-        # 建立疊圖層
-        image_url = f"data:image/png;base64,{png_base64}"
-        image_bounds = [[bottom_lat, left_lon], [top_lat, right_lon]]
+            # 建立疊圖層
+            image_url = f"data:image/png;base64,{png_base64}"
+            image_bounds = [[bottom_lat, left_lon], [top_lat, right_lon]]
 
-        ImageOverlay(
-            image=image_url,
-            bounds=image_bounds,
-            opacity=0.5,
-            interactive=False,
-            cross_origin=False,
-            zindex=1,
-        ).add_to(m)
+            ImageOverlay(
+                image=image_url,
+                bounds=image_bounds,
+                opacity=0.5,
+                interactive=False,
+                cross_origin=False,
+                zindex=1,
+            ).add_to(m)
 
-    st_data = st_folium(m, width=600, height=600)
+        st_data = st_folium(m, width=600, height=600)
 
-    if st_data and st_data.get("last_clicked"):
-        latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
-        nearest_node = find_nearest_node(G, *latlon)
-        if nearest_node:
-            lat_, lon_ = G.nodes[nearest_node]["latlon"]
-            st.session_state.nodes.append(nearest_node)
-            st.session_state.points.append([lat_, lon_])
+        if st_data and st_data.get("last_clicked"):
+            latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
+            nearest_node = find_nearest_node(G, *latlon)
+            if nearest_node:
+                lat_, lon_ = G.nodes[nearest_node]["latlon"]
+                st.session_state.nodes.append(nearest_node)
+                st.session_state.points.append([lat_, lon_])
 
-            # 🔄 加上這段：反查地址並自動填入
-            address = reverse_geocode(lat_, lon_)
-            if len(st.session_state.points) == 1:
-                st.session_state["set_start_address"] = address
-            elif len(st.session_state.points) == 2:
-                st.session_state["set_end_address"] = address
+                # 🔄 加上這段：反查地址並自動填入
+                address = reverse_geocode(lat_, lon_)
+                if len(st.session_state.points) == 1:
+                    st.session_state["set_start_address"] = address
+                elif len(st.session_state.points) == 2:
+                    st.session_state["set_end_address"] = address
 
-            st.rerun()
-        else:
-            st.warning("⚠️ 點的位置離路網太遠，請靠近道路再試一次。")
+                st.rerun()
+            else:
+                st.warning("⚠️ 點的位置離路網太遠，請靠近道路再試一次。")
 
 
 
