@@ -209,32 +209,27 @@ with col1:
     row2 = st.columns([3, 1, 1, 1])
     with row2[0]:
         st.markdown("""
-            <style>
-            div[data-baseweb="radio"] label {
-                display: inline-flex;
-                align-items: center;
-                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-                font-size: 18px !important;
-                font-weight: 600;
-                color: #333333;
-                margin-right: 16px;
-            }
-            </style>
-        """, unsafe_allow_html=True)
+        <style>
+        input[type="radio"] {
+            transform: scale(1.5);
+            margin-right: 8px;
+        }
+        label {
+            font-size: 20px;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            font-weight: 600;
+        }
+        </style>
 
-        st.radio(
-            label="",
-            options=["機車", "單車", "步行"],
-            index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
-            key="transport_mode",
-            horizontal=True,
-            label_visibility="collapsed",
-        )
+        <label><input type="radio" name="mode" value="機車">機車</label>
+        <label><input type="radio" name="mode" value="單車">單車</label>
+        <label><input type="radio" name="mode" value="步行">步行</label>
+        """, unsafe_allow_html=True)
 
 
     with row2[1]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("🟢 確定起點喵"):
+        if st.button("🟢 確定起點"):
             if start_address.strip():
                 result = geocode(start_address)
                 if result:
