@@ -416,6 +416,9 @@ with col3:
         line-height: 1.6;
         margin-top: 10px;
     }
+    .details-wrapper {
+        margin-bottom: 20px;
+    }
     </style>
 
     <details>
