@@ -280,7 +280,7 @@ with col1:
 
 
     with row2[2]:
-        if st.button("🔃 清空選擇喵"):
+        if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
