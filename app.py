@@ -208,44 +208,38 @@ with col1:
     # 按鈕
     row2 = st.columns([2, 1, 1])
     with row2[0]:
+        from st_custom_radio import st_custom_radio
+
         st.markdown("""
         <style>
-        .custom-radio-group {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 4px;
-        }
-        .custom-radio-group label {
-            font-size: 20px;
+        .custom-radio .stButton>button {
+            background-color: white;
+            border: 2px solid #ccc;
+            font-size: 18px;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             font-weight: 600;
-            color: #333333;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 8px;
+            margin-right: 12px;
         }
-        .custom-radio-group input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #cc3333;
-            transform: scale(1.3);
+        .custom-radio .stButton>button:hover {
+            border-color: #cc3333;
+        }
+        .custom-radio .stButton>button:focus {
+            background-color: #cc3333;
+            color: white;
         }
         </style>
-
-        <div class="custom-radio-group">
-            <label><input type="radio" name="mode" value="機車" onclick="document.getElementById('transport_input').value='機車'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">機車</label>
-            <label><input type="radio" name="mode" value="單車" onclick="document.getElementById('transport_input').value='單車'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">單車</label>
-            <label><input type="radio" name="mode" value="步行" onclick="document.getElementById('transport_input').value='步行'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">步行</label>
-        </div>
         """, unsafe_allow_html=True)
 
-        # 隱藏的 text_input，作為橋樑
-        selected_mode = st.text_input("transport_mode_hidden", value=st.session_state.get("transport_mode", "機車"), key="transport_input", label_visibility="collapsed")
-
-        # 把值寫入 session_state
-        st.session_state["transport_mode"] = selected_mode
+        mode = st_custom_radio(
+            options=["機車", "單車", "步行"],
+            default=st.session_state.get("transport_mode", "機車"),
+            key="transport_mode",
+            orientation="horizontal",
+            container_css_class="custom-radio"
+        )
 
 
 
