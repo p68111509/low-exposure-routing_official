@@ -247,7 +247,7 @@ with col1:
 
     with row2[1]:
         disabled = st.session_state.disable_inputs  # 按鈕是否鎖定
-        if st.button("🧭 路徑解算", disabled=st.session_state.disable_inputs):
+        if st.button("🧭 路徑解算喵", disabled=st.session_state.disable_inputs):
             if not start_address.strip():
                 st.warning("⚠️ 請輸入起點地址")
             elif not end_address.strip():
