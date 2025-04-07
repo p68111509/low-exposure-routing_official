@@ -537,7 +537,7 @@ with col3:
             color = "green" if i == 0 else "red"
             folium.Marker(location=pt, tooltip=label, icon=folium.Icon(color=color)).add_to(m)
 
-        if len(st.session_state.nodes) == 2:
+        if st.session_state.has_routed and len(st.session_state.nodes) == 2:
             for path, color, label in [
                 (compute_path(G, *st.session_state.nodes, "length")[0], "blue", "最短路徑"),
                 (compute_path(G, *st.session_state.nodes, "exposure")[0], "orange", "最低暴露路徑")
