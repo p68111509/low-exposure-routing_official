@@ -210,13 +210,13 @@ with col1:
     with row2[0]:
         st.markdown("""
             <style>
-            .transport-radio label {
-                display: inline-flex !important;
+            div[data-baseweb="radio"] label {
+                display: inline-flex;
                 align-items: center;
-                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 60px;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+                font-size: 18px !important;
                 font-weight: 600;
-                color: #333;
+                color: #333333;
                 margin-right: 16px;
             }
             </style>
