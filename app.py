@@ -222,7 +222,7 @@ with col1:
             padding: 10px 16px;
             text-align: center;
             width: 100%;
-            margin-top: 6px;
+            margin-top: 0px;
         }
         </style>
         <div class="select-label-box">交通方式</div>
