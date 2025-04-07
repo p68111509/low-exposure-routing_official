@@ -682,25 +682,36 @@ with col3:
 #     </div>
 # """, unsafe_allow_html=True)
 
+# Footer：版權、聯絡方式、指導老師與 Logo
+def get_image_base64(path):
+    with open(path, "rb") as img_file:
+        encoded = base64.b64encode(img_file.read()).decode()
+    return encoded
+
+# 圖片轉 base64
+logo1_base64 = get_image_base64("logo/成大_白色垂直.jpg")
+logo2_base64 = get_image_base64("logo/實驗室_白色方形.jpg")
+
 st.markdown("""
     <hr style="margin-top: 40px; margin-bottom: 10px; border: none; border-top: 1px solid #ccc;" />
 
     <div style="text-align: center; font-size: 13px; color: #666; font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;">
-        <div style="margin-bottom: 10px;">
-            <strong>© 2025 許家瑋</strong>｜國立成功大學 測量及空間資訊學系<br>
+        <p style="margin-bottom: 4px;">
+            © 2025 許家瑋｜國立成功大學 測量及空間資訊學系<br>
             指導老師：吳治達 教授<br>
-            聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a><br>
-            GitHub 專案：<a href="https://github.com/p68111509/low-exposure-routing_demo" target="_blank">low-exposure-routing_demo</a>
-        </div>
-        <div style="margin-bottom: 10px;">
+            聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>｜GitHub 專案：
+            <a href="https://github.com/p68111509/low-exposure-routing_demo" target="_blank">low-exposure-routing_demo</a>
+        </p>
+        <p style="margin-top: 6px; margin-bottom: 12px;">
             本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
-        </div>
-        <div style="display: flex; justify-content: center; gap: 16px;">
-            <img src="data:image/jpg;base64,{logo1_base64}" style="width: 80px; opacity: 0.95; border-radius: 4px;">
-            <img src="data:image/jpg;base64,{logo2_base64}" style="width: 80px; opacity: 0.95; border-radius: 4px;">
+        </p>
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <img src="data:image/jpg;base64,{logo1_base64}" style="height: 60px; opacity: 0.95;">
+            <img src="data:image/jpg;base64,{logo2_base64}" style="height: 60px; opacity: 0.95;">
         </div>
     </div>
 """, unsafe_allow_html=True)
+
 
 
 
