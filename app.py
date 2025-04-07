@@ -209,7 +209,7 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([1, 1])
+    row2 = st.columns([1, 1, 1])
     with row2[0]:
         st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
