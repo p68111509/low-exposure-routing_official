@@ -208,15 +208,15 @@ with col1:
     # 按鈕
     row2 = st.columns([2, 1, 1])
     with row2[0]:
-        st.markdown(f"""
+        st.markdown("""
         <style>
-        .custom-radio-group {{
+        .custom-radio-group {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-top: 4px;
-        }}
-        .custom-radio-group label {{
+        }
+        .custom-radio-group label {
             font-size: 20px;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             font-weight: 600;
@@ -225,39 +225,21 @@ with col1:
             align-items: center;
             gap: 8px;
             cursor: pointer;
-        }}
-        .custom-radio-group input[type="radio"] {{
+        }
+        .custom-radio-group input[type="radio"] {
             width: 18px;
             height: 18px;
-            accent-color: #cc3333;
+            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
             transform: scale(1.3);
-        }}
+        }
         </style>
 
         <div class="custom-radio-group">
-            <label><input type="radio" name="mode" value="機車" {'checked' if st.session_state.get("transport_mode") == "機車" else ''}>機車</label>
-            <label><input type="radio" name="mode" value="單車" {'checked' if st.session_state.get("transport_mode") == "單車" else ''}>單車</label>
-            <label><input type="radio" name="mode" value="步行" {'checked' if st.session_state.get("transport_mode") == "步行" else ''}>步行</label>
+            <label><input type="radio" name="mode" value="機車">機車</label>
+            <label><input type="radio" name="mode" value="單車">單車</label>
+            <label><input type="radio" name="mode" value="步行">步行</label>
         </div>
-
-        <script>
-        const radios = window.parent.document.getElementsByName("mode");
-        radios.forEach(radio => {{
-            radio.addEventListener("change", function() {{
-                const selected = this.value;
-                const url = new URL(window.location.href);
-                url.searchParams.set("transport_mode", selected);
-                window.location.href = url.toString();
-            }});
-        }});
-        </script>
         """, unsafe_allow_html=True)
-
-        # ⛳ 從網址 query string 取得選項 → 寫入 session_state
-        query_mode = st.query_params.get("transport_mode")
-        if query_mode:
-            st.session_state.transport_mode = query_mode
-
 
 
 
