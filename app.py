@@ -213,7 +213,7 @@ with col1:
         st.markdown("""
         <style>
         .select-label-box {
-            font-size: 12px;
+            font-size: 15px;
             font-weight: 600;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             color: #333333;
