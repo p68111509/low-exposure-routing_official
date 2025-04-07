@@ -109,7 +109,9 @@ def compute_path(G, start_node, end_node, weight):
 
     return path, total, exposure
 
-### ========== Streamlit 介面 ========== ###
+
+
+################################## Streamlit 介面 ##################################
 st.set_page_config(layout="wide")
 
 # 初始化狀態（放這裡最安全）
@@ -130,8 +132,8 @@ st.markdown("""
 col1, col2, col3 = st.columns([6, 6, 1])
 
 with col1:
-    tile_row = st.columns([4, 1])
-    with tile_row[0]:
+    tile_row = st.columns([5, 1])
+    with tile_row[0]: # 標題
         st.markdown("""
             <h1 style="
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
@@ -165,7 +167,7 @@ with col1:
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
     subtile_row = st.columns([3, 2])
-    with subtile_row[0]:
+    with subtile_row[0]: # 輸入地址 / 於地圖雙擊
         st.markdown(
             """
             <style>
@@ -202,19 +204,20 @@ with col1:
             st.session_state.nodes = []
             st.rerun()
 
-    row1 = st.columns([3, 2])
+    # 地址輸入框
+    row1 = st.columns([1, 1])
     with row1[0]:
-        # 如果有從地圖設定的地址，先更新再畫輸入框
         if "set_start_address" in st.session_state:
             st.session_state.start_address = st.session_state.pop("set_start_address")
-
+        start_address = st.text_input(label="", placeholder="起點地址", key="start_address")
+    with row1[1]:
         if "set_end_address" in st.session_state:
             st.session_state.end_address = st.session_state.pop("set_end_address")
-
-        start_address = st.text_input(label="", placeholder="起點地址", key="start_address")
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
-    with row1[1]:
+    # 按鈕
+    row2 = st.columns([1, 1])
+    with row2[0]:
         st.markdown("<div style='padding-top: 26px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
             if start_address.strip():
@@ -233,6 +236,7 @@ with col1:
                 st.warning("請輸入起點地址")
         st.markdown("</div>", unsafe_allow_html=True)
 
+    with row2[1]:
         st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🔴 確定終點"):
             if end_address.strip():
