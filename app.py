@@ -346,8 +346,8 @@ with col1:
 
         df = pd.DataFrame({
             "路徑": ["最短路徑", "最低暴露路徑"],
-            "總距離(km)": [round(dist_km1, 2), round(dist_km2, 2)],
-            "預估時間(min)": [round(time_min1, 2), round(time_min2, 2)],
+            "總距離 (km)": [round(dist_km1, 2), round(dist_km2, 2)],
+            "預估時間 (min)": [round(time_min1, 2), round(time_min2, 2)],
             "每分鐘暴露量 (μg/m3)": [round(expo_rate1, 2), round(expo_rate2, 2)]
         })
 
