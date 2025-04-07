@@ -393,46 +393,39 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col3:
-    st.markdown("""
-    <style>
-    .custom-summary {
-        background-color: #cccccc;
-        padding: 10px 16px;
-        border-radius: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        font-family: "Noto Sans TC", "Microsoft JhengHei";
-        text-align: center;
-        color: black;
-        cursor: pointer;
-    }
-    .custom-details {
-        background-color: #eeeeee;
-        padding: 16px;
-        border-radius: 10px;
-        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-        font-size: 16px;
-        color: #444444;
-        line-height: 1.6;
-        margin-top: 10px;
-        margin-bottom: 20px;
-    }
-    .details-wrapper {
-        margin-bottom: 20px;
-    }
-    </style>
+    with st.container():
+        st.markdown("""
+            <div style='
+                background-color: #cccccc;
+                padding: 10px 16px;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: bold;
+                font-family: "Noto Sans TC", "Microsoft JhengHei";
+                text-align: center;
+                color: black;
+            '>🛠️ 操作說明</div>
+        """, unsafe_allow_html=True)
 
-    <details>
-    <summary class="custom-summary">🛠️ 操作說明</summary>
-    <div class="custom-details">
-        🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
-        🚘 選擇交通方式：機車、單車或步行<br>
-        🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格與路線<br>
-        ✅ 點選「空汙疊圖」可查看 PM2.5 濃度背景圖層
-    </div>
-    </details>
-    """, unsafe_allow_html=True)
+        show = st.toggle("展開 / 收合說明")
 
+        if show:
+            st.markdown("""
+                <div style='
+                    background-color: #eeeeee;
+                    padding: 16px;
+                    border-radius: 10px;
+                    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+                    font-size: 16px;
+                    color: #444444;
+                    line-height: 1.6;
+                '>
+                🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
+                🚘 選擇交通方式：機車、單車或步行<br>
+                🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格<br>
+                ✅ 點選「空汙疊圖」可查看PM2.5濃度背景圖層
+                </div>
+            """, unsafe_allow_html=True)
 
     # # 灰色橫線
     # st.markdown("""
