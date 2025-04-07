@@ -208,38 +208,58 @@ with col1:
     # 按鈕
     row2 = st.columns([2, 1, 1])
     with row2[0]:
-        st.markdown("""
-        <style>
-        .custom-radio-group {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 4px;
-        }
-        .custom-radio-group label {
-            font-size: 20px;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-            font-weight: 600;
-            color: #333333;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-        .custom-radio-group input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
-            transform: scale(1.3);
-        }
-        </style>
+        with st.form(key="transport_form", clear_on_submit=False):
+            st.markdown(f"""
+            <style>
+            .custom-radio-group {{
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+                margin-top: 4px;
+            }}
+            .custom-radio-group label {{
+                font-size: 20px;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                font-weight: 600;
+                color: #333333;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+            }}
+            .custom-radio-group input[type="radio"] {{
+                width: 18px;
+                height: 18px;
+                accent-color: #cc3333;
+                transform: scale(1.3);
+            }}
+            </style>
 
-        <div class="custom-radio-group">
-            <label><input type="radio" name="mode" value="機車">機車</label>
-            <label><input type="radio" name="mode" value="單車">單車</label>
-            <label><input type="radio" name="mode" value="步行">步行</label>
-        </div>
-        """, unsafe_allow_html=True)
+            <div class="custom-radio-group">
+                <label><input type="radio" name="mode" value="機車" {'checked' if st.session_state.get("transport_mode") == "機車" else ''}>機車</label>
+                <label><input type="radio" name="mode" value="單車" {'checked' if st.session_state.get("transport_mode") == "單車" else ''}>單車</label>
+                <label><input type="radio" name="mode" value="步行" {'checked' if st.session_state.get("transport_mode") == "步行" else ''}>步行</label>
+            </div>
+
+            <input type="hidden" id="selected_mode" name="selected_mode">
+            <script>
+            const radios = window.parent.document.getElementsByName("mode");
+            const hiddenInput = window.parent.document.getElementById("selected_mode");
+            radios.forEach(radio => {{
+                radio.addEventListener("change", function() {{
+                    hiddenInput.value = this.value;
+                }});
+            }});
+            </script>
+            """, unsafe_allow_html=True)
+
+            submitted = st.form_submit_button("✔️ 選擇交通方式")
+            if submitted:
+                # 取得使用者在網頁上的 radio 選擇
+                selected = st.experimental_get_query_params().get("selected_mode", [None])[0]
+                if selected:
+                    st.session_state.transport_mode = selected
+
 
 
 
