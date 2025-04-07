@@ -168,18 +168,32 @@ with col1:
     with subtile_row[0]:
         st.markdown(
             """
-            <div style='
+            <style>
+            .input-header-box {
                 font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-                font-size: 24px;
+                font-size: 18px;
                 font-weight: 600;
                 color: #444444;
                 text-align: center;
-            '>
-                輸入地址<span style='font-size: 0.8em; color: #bbbbbb;'> (或於地圖雙擊)</span>
+                background-color: #eeeeee;
+                padding: 10px 16px;
+                border-radius: 10px;
+                display: inline-block;
+                margin-bottom: 12px;
+            }
+            .input-header-box span {
+                font-size: 0.8em;
+                color: #999999;
+            }
+            </style>
+
+            <div class="input-header-box">
+                輸入地址<span>（或於地圖雙擊）</span>
             </div>
             """,
             unsafe_allow_html=True
         )
+
     with subtile_row[1]:
         if st.button("🔃 重新選擇"):
             st.session_state.points = []
