@@ -211,7 +211,7 @@ with col1:
     # 按鈕
     row2 = st.columns([1, 1, 1])
     with row2[0]:
-        st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
+        # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
             if start_address.strip():
                 result = geocode(start_address)
@@ -230,7 +230,7 @@ with col1:
         st.markdown("</div>", unsafe_allow_html=True)
 
     with row2[1]:
-        st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
+        # st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🔴 確定終點"):
             if end_address.strip():
                 result = geocode(end_address)
