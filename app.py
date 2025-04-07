@@ -391,7 +391,7 @@ with col2:
 
         # 🟣 PM2.5 按鈕（獨立放置）
         with st.form(key="pm25_form"):
-            submitted = st.form_submit_button("🟥 🟨 🟦 空汙濃度")
+            submitted = st.form_submit_button("空汙濃度疊圖")
 
             st.markdown(f"""
                 <script>
@@ -411,7 +411,7 @@ with col2:
         # 圖例：不可點擊的樣式展示
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟧 低暴露路徑</div><br>
+                <div class="legend-label">🟧 低暴路徑</div><br>
                 <div class="legend-label">🟦 最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
