@@ -168,29 +168,12 @@ with col1:
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
     # 輸入地址 / 於地圖雙擊
-    # 🛠️ 使用說明區塊：自訂標題 + 展開內容
-    st.markdown("""
-        <div style="
-            background-color: #444444;
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px 10px 0 0;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-            margin-bottom: -10px;
-        ">
-            🛠️ 使用說明
-        </div>
-    """, unsafe_allow_html=True)
-
-    with st.expander("", expanded=False):
+    with st.expander("🛠️ 使用說明"):
         st.markdown("""
             <div style="
                 background-color: #eeeeee;
                 padding: 16px;
-                border-radius: 0 0 10px 10px;
+                border-radius: 10px;
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
                 font-size: 16px;
                 color: #444444;
@@ -198,11 +181,10 @@ with col1:
             ">
             🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
             🚘 選擇交通方式：機車、單車或步行<br>
-            🧭 點選「路徑解算」：系統會計算兩種路徑（最短 / 最低暴露），並顯示統計表格比較<br>
-            ✅ 點選「空汙疊圖」可在地圖查看 PM2.5 濃度背景圖層
+            🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格<br>
+            ✅ 點選「空汙疊圖」可查看PM2.5濃度背景圖層
             </div>
         """, unsafe_allow_html=True)
-
 
 
 
