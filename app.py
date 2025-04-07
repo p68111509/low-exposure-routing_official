@@ -356,15 +356,28 @@ with col2:
             width: 120px;
             text-align: center;
         }
+        .legend-wrapper {
+            margin-top: 2em;
+            text-align: center;
+        }
+        .legend-label {
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            margin: 4px 0;
+            padding: 6px 16px;
+            border-radius: 8px;
+            background-color: #eeeeee;
+            display: inline-block;
+        }
         </style>
 
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
-        
+
     map_row = st.columns([1,8])
 
     with map_row[0]:
-
 
         # 🚘 三個交通方式按鈕（群組起來）
         if st.button("機車", key="moto"):
@@ -394,6 +407,15 @@ with col2:
 
             if submitted:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
+
+        # 圖例：不可點擊的樣式展示
+        st.markdown("""
+            <div class="legend-wrapper">
+                <div class="legend-label">🟧 低暴露路徑</div><br>
+                <div class="legend-label">🟦 最短路徑</div>
+            </div>
+        """, unsafe_allow_html=True)
+
 
 
     with map_row[1]:
