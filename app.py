@@ -170,26 +170,6 @@ with col1:
     if "points" not in st.session_state: st.session_state.points = []
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
-    # 輸入地址 / 於地圖雙擊
-    with st.expander("🛠️ 使用說明"):
-        st.markdown("""
-            <div style="
-                background-color: #eeeeee;
-                padding: 16px;
-                border-radius: 10px;
-                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 16px;
-                color: #444444;
-                line-height: 1.6;
-            ">
-            🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
-            🚘 選擇交通方式：機車、單車或步行<br>
-            🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格<br>
-            ✅ 點選「空汙疊圖」可查看PM2.5濃度背景圖層
-            </div>
-        """, unsafe_allow_html=True)
-
-
 
     # 地址輸入框
     row1 = st.columns([1, 1])
@@ -413,44 +393,62 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col3:
-    # 灰色橫線
-    st.markdown("""
-        <style>
-        .transport-wrapper {
-            background-color: #bbbbbb;
-            border-radius: 12px;
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-            box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
-        }
-        .transport-button {
-            font-size: 14px !important;
-            padding: 6px 20px !important;
-            margin: 4px 0;
-            width: 120px;
-            text-align: center;
-        }
-        .legend-wrapper {
-            margin-top: 0.5em;
-            text-align: center;
-        }
-        .legend-label {
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-            margin: 4px 0;
-            padding: 6px 16px;
-            border-radius: 8px;
-            background-color: #eeeeee;
-            display: inline-block;
-        }
-        </style>
+    # 操作說明
+    with st.expander("🛠️ 操作說明"):
+        st.markdown("""
+            <div style="
+                background-color: #eeeeee;
+                padding: 16px;
+                border-radius: 10px;
+                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+                font-size: 16px;
+                color: #444444;
+                line-height: 1.6;
+            ">
+            🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
+            🚘 選擇交通方式：機車、單車或步行<br>
+            🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格<br>
+            ✅ 點選「空汙疊圖」可查看PM2.5濃度背景圖層
+            </div>
+        """, unsafe_allow_html=True)
+    # # 灰色橫線
+    # st.markdown("""
+    #     <style>
+    #     .transport-wrapper {
+    #         background-color: #bbbbbb;
+    #         border-radius: 12px;
+    #         padding: 8px;
+    #         display: flex;
+    #         flex-direction: column;
+    #         align-items: center;
+    #         margin-bottom: 20px;
+    #         box-shadow: 1px 1px 4px rgba(0,0,0,0.05);
+    #     }
+    #     .transport-button {
+    #         font-size: 14px !important;
+    #         padding: 6px 20px !important;
+    #         margin: 4px 0;
+    #         width: 120px;
+    #         text-align: center;
+    #     }
+    #     .legend-wrapper {
+    #         margin-top: 0.5em;
+    #         text-align: center;
+    #     }
+    #     .legend-label {
+    #         font-size: 14px;
+    #         font-weight: 600;
+    #         font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    #         margin: 4px 0;
+    #         padding: 6px 16px;
+    #         border-radius: 8px;
+    #         background-color: #eeeeee;
+    #         display: inline-block;
+    #     }
+    #     </style>
 
-        <div class="transport-wrapper">
-    """, unsafe_allow_html=True)
+    #     <div class="transport-wrapper">
+    # """, unsafe_allow_html=True)
 
     map_row = st.columns([1.5, 9])
     
