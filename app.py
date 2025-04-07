@@ -397,7 +397,7 @@ with col3:
     with st.expander("🛠️ 操作說明"):
         st.markdown("""
             <div style="
-                background-color: #eeeeee;
+                background-color: #999999;
                 padding: 16px;
                 border-radius: 10px;
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
@@ -581,7 +581,7 @@ with col3:
                 zindex=1,
             ).add_to(m)
 
-        st_data = st_folium(m, width=600, height=450)
+        st_data = st_folium(m, width=600, height=500)
 
         if not st.session_state.disable_inputs and st_data and st_data.get("last_clicked"):
             latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
