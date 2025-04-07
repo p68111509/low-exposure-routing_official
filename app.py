@@ -168,12 +168,29 @@ with col1:
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
     # 輸入地址 / 於地圖雙擊
-    with st.expander("🛠️ 使用說明"):
+    # 🛠️ 使用說明區塊：自訂標題 + 展開內容
+    st.markdown("""
+        <div style="
+            background-color: #444444;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            margin-bottom: -10px;
+        ">
+            🛠️ 使用說明
+        </div>
+    """, unsafe_allow_html=True)
+
+    with st.expander("", expanded=False):
         st.markdown("""
             <div style="
                 background-color: #eeeeee;
                 padding: 16px;
-                border-radius: 10px;
+                border-radius: 0 0 10px 10px;
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
                 font-size: 16px;
                 color: #444444;
@@ -185,6 +202,7 @@ with col1:
             ✅（可選）點選「空汙疊圖」可查看 PM2.5 濃度背景圖層
             </div>
         """, unsafe_allow_html=True)
+
 
 
 
