@@ -140,7 +140,7 @@ with col1:
                 letter-spacing: 1.5px;
                 color: black;
                 text-align: center;
-                margin-bottom: 4px;
+                margin-bottom: 0px;
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             ">
                 Geo-AI 路徑好空氣
