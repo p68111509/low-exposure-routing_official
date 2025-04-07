@@ -178,7 +178,8 @@ with col1:
                 background-color: #eeeeee;
                 padding: 10px 16px;
                 border-radius: 10px;
-                display: inline-block;
+                width: 100%;
+                display: block;
                 margin-bottom: 12px;
             }
             .input-header-box span {
@@ -193,6 +194,7 @@ with col1:
             """,
             unsafe_allow_html=True
         )
+
 
     with subtile_row[1]:
         if st.button("🔃 重新選擇"):
