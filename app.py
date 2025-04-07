@@ -366,7 +366,7 @@ with col2:
             text-align: center;
         }
         .legend-wrapper {
-            margin-top: 2em;
+            margin-top: 0.5em;
             text-align: center;
         }
         .legend-label {
@@ -384,7 +384,7 @@ with col2:
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    map_row = st.columns([1,8])
+    map_row = st.columns([1, 8])
 
     with map_row[0]:
 
@@ -417,13 +417,14 @@ with col2:
             if submitted:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
-        # 圖例：不可點擊的樣式展示
+        # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
                 <div class="legend-label">🟧 低暴路徑</div><br>
                 <div class="legend-label">🟦 最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
+
 
 
 
