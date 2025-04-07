@@ -489,11 +489,30 @@ with col3:
 
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
+            <style>
+            .legend-wrapper {
+                margin-top: 0.5em;
+                text-align: center;
+            }
+            .legend-label {
+                font-size: 14px;
+                font-weight: 600;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                margin: 4px 0;
+                padding: 6px 16px;
+                border-radius: 8px;
+                background-color: #eeeeee;
+                display: inline-block;
+                line-height: 1.4;
+            }
+            </style>
+
             <div class="legend-wrapper">
-                <div class="legend-label">🟧<br>低暴路徑</div>
-                <div class="legend-label">🟦<br>最短路徑</div>
+                <div class="legend-label"><span style="color:#FFA94D;">⬤</span><br>低暴路徑</div>
+                <div class="legend-label"><span style="color:#1E3A8A;">⬤</span><br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
+
 
 
 
