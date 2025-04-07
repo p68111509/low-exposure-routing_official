@@ -212,36 +212,31 @@ with col1:
     with row2[0]:
         st.markdown("""
         <style>
-        .custom-radio-group {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 4px;
-        }
-        .custom-radio-group label {
-            font-size: 20px;
-            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        .select-label {
+            font-size: 18px;
             font-weight: 600;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             color: #333333;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
+            margin-bottom: 4px;
         }
-        .custom-radio-group input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
-            transform: scale(1.3);
+        div[data-baseweb="select"] > div {
+            font-size: 16px !important;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
         }
         </style>
-
-        <div class="custom-radio-group">
-            <label><input type="radio" name="mode" value="機車">機車</label>
-            <label><input type="radio" name="mode" value="單車">單車</label>
-            <label><input type="radio" name="mode" value="步行">步行</label>
-        </div>
         """, unsafe_allow_html=True)
+
+        st.markdown('<div class="select-label">交通方式：</div>', unsafe_allow_html=True)
+
+        selected_mode = st.selectbox(
+            label="交通方式",
+            options=["機車", "單車", "步行"],
+            index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
+            label_visibility="collapsed",
+        )
+
+        st.session_state.transport_mode = selected_mode
+
 
 
 
