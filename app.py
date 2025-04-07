@@ -210,29 +210,22 @@ with col1:
     with row2[0]: # 🚘 通勤方式選擇（radio）
         st.markdown("""
             <style>
-            .radio-label {
-                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 16px;
+            div[data-baseweb="radio"] label {
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
+                font-size: 16px !important;
                 font-weight: 600;
                 color: #333333;
-                margin-bottom: 6px;
-                text-align: center;
-            }
-            div[data-baseweb="radio"] > div {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
+                margin-right: 12px;
             }
             </style>
-            <div class="radio-label">通勤方式</div>
         """, unsafe_allow_html=True)
 
-        mode = st.radio(
+        st.radio(
             label="",
             options=["機車", "單車", "步行"],
             index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
             key="transport_mode",
+            horizontal=True,
         )
 
     with row2[1]:
