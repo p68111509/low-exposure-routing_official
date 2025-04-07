@@ -207,15 +207,17 @@ with col1:
 
     # 按鈕
     row2 = st.columns([3, 1, 1, 1])
-    with row2[0]: # 🚘 通勤方式選擇（radio）
+    with row2[0]:
         st.markdown("""
             <style>
-            div[data-baseweb="radio"] label {
-                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif !important;
-                font-size: 16px !important;
+            .transport-radio label {
+                display: inline-flex !important;
+                align-items: center;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                font-size: 15px;
                 font-weight: 600;
-                color: #333333;
-                margin-right: 12px;
+                color: #333;
+                margin-right: 16px;
             }
             </style>
         """, unsafe_allow_html=True)
@@ -226,7 +228,9 @@ with col1:
             index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
             key="transport_mode",
             horizontal=True,
+            label_visibility="collapsed",
         )
+
 
     with row2[1]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
