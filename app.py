@@ -222,10 +222,10 @@ with col1:
             padding: 10px 16px;
             text-align: center;
             width: 100%;
-            margin-top: 12px;
+            margin-top: 14px;
         }
         </style>
-        <div class="select-label-box">交通方式</div>
+        <div class="select-label-box">交通方式：</div>
         """, unsafe_allow_html=True)
 
     with row2[1]:
