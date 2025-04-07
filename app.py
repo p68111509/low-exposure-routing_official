@@ -206,19 +206,36 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([1, 1, 1, 1, 1, 1])
-    
-    # 🚘 三個交通方式按鈕（群組起來）
-    with row2[0]:
-        if st.button("機車", key="moto"):
-            st.session_state.transport_mode = "機車"
+    row2 = st.columns([3, 1, 1, 1])
+    with row2[0]: # 🚘 通勤方式選擇（radio）
+        st.markdown("""
+            <style>
+            .radio-label {
+                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+                font-size: 16px;
+                font-weight: 600;
+                color: #333333;
+                margin-bottom: 6px;
+                text-align: center;
+            }
+            div[data-baseweb="radio"] > div {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            </style>
+            <div class="radio-label">通勤方式</div>
+        """, unsafe_allow_html=True)
+
+        mode = st.radio(
+            label="",
+            options=["機車", "單車", "步行"],
+            index=["機車", "單車", "步行"].index(st.session_state.get("transport_mode", "機車")),
+            key="transport_mode",
+        )
+
     with row2[1]:
-        if st.button("單車", key="bike"):
-            st.session_state.transport_mode = "單車"
-    with row2[2]:
-        if st.button("步行", key="walk"):
-            st.session_state.transport_mode = "步行"
-    with row2[3]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
             if start_address.strip():
@@ -237,7 +254,7 @@ with col1:
                 st.warning("請輸入起點地址")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    with row2[4]:
+    with row2[2]:
         # st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🔴 確定終點"):
             if end_address.strip():
@@ -257,7 +274,7 @@ with col1:
                 st.warning("請輸入終點地址")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    with row2[5]:
+    with row2[3]:
         if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
