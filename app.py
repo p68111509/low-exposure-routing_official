@@ -115,6 +115,8 @@ def compute_path(G, start_node, end_node, weight):
 st.set_page_config(layout="wide")
 
 # 初始化狀態（放這裡最安全）
+if "disable_inputs" not in st.session_state:
+    st.session_state.disable_inputs = False
 if "show_pm25_layer" not in st.session_state:
     st.session_state.show_pm25_layer = False
 
@@ -244,6 +246,7 @@ with col1:
 
 
     with row2[1]:
+        disabled = st.session_state.disable_inputs  # 按鈕是否鎖定
         if st.button("🧭 路徑解算"):
             if not start_address.strip():
                 st.warning("⚠️ 請輸入起點地址")
@@ -276,6 +279,8 @@ with col1:
                                     list(G.nodes[end_node]["latlon"]),
                                 ]
                                 st.session_state.nodes = [start_node, end_node]
+                                # 鎖定所有輸入
+                                st.session_state.disable_inputs = True
                                 st.rerun()
 
 
@@ -283,6 +288,7 @@ with col1:
         if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
+            st.session_state.disable_inputs = False  # ✅ 解鎖功能
             st.rerun()
 
 
@@ -489,30 +495,11 @@ with col3:
 
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
-            <style>
-            .legend-wrapper {
-                margin-top: 0.5em;
-                text-align: center;
-            }
-            .legend-label {
-                font-size: 14px;
-                font-weight: 600;
-                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-                margin: 4px 0;
-                padding: 6px 16px;
-                border-radius: 8px;
-                background-color: #eeeeee;
-                display: inline-block;
-                line-height: 1.4;
-            }
-            </style>
-
             <div class="legend-wrapper">
-                <div class="legend-label"><span style="color:#FFA94D;">⬤</span><br>低暴路徑</div>
-                <div class="legend-label"><span style="color:#1E3A8A;">⬤</span><br>最短路徑</div>
+                <div class="legend-label">🟧<br>低暴路徑</div>
+                <div class="legend-label">🟦<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
-
 
 
 
@@ -584,7 +571,7 @@ with col3:
 
         st_data = st_folium(m, width=600, height=600)
 
-        if st_data and st_data.get("last_clicked"):
+        if not st.session_state.disable_inputs and st_data and st_data.get("last_clicked"):
             latlon = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
             nearest_node = find_nearest_node(G, *latlon)
             if nearest_node:
