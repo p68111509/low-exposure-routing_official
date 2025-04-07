@@ -141,21 +141,20 @@ with col1:
                 color: black;
                 text-align: center;
                 margin-bottom: 0px;
+                line-height: 1.2;
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             ">
-                Geo-AI 路徑好空氣
+                Geo-AI 路徑好空氣<br>
+                <span style="
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #666666;
+                ">
+                    台北市 & 新北市
+                </span>
             </h1>
-            <div style="
-                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 18px;
-                font-weight: 500;
-                color: #666666;
-                text-align: center;
-                margin-bottom: 0.5em;
-            ">
-                台北市 & 新北市
-            </div>
         """, unsafe_allow_html=True)
+
 
 
     if "transport_mode" not in st.session_state:
