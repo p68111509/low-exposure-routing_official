@@ -210,21 +210,37 @@ with col1:
     with row2[0]:
         st.markdown("""
         <style>
-        input[type="radio"] {
-            transform: scale(1.5);
-            margin-right: 8px;
+        .custom-radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 4px;
         }
-        label {
+        .custom-radio-group label {
             font-size: 20px;
             font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
             font-weight: 600;
+            color: #333333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .custom-radio-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
+            transform: scale(1.3);
         }
         </style>
 
-        <label><input type="radio" name="mode" value="機車">機車</label>
-        <label><input type="radio" name="mode" value="單車">單車</label>
-        <label><input type="radio" name="mode" value="步行">步行</label>
+        <div class="custom-radio-group">
+            <label><input type="radio" name="mode" value="機車">機車</label>
+            <label><input type="radio" name="mode" value="單車">單車</label>
+            <label><input type="radio" name="mode" value="步行">步行</label>
+        </div>
         """, unsafe_allow_html=True)
+
 
 
     with row2[1]:
