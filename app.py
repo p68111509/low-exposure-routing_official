@@ -166,43 +166,36 @@ with col1:
     if "points" not in st.session_state: st.session_state.points = []
     if "nodes" not in st.session_state: st.session_state.nodes = []
 
-    subtile_row = st.columns([3, 2])
-    with subtile_row[0]: # 輸入地址 / 於地圖雙擊
-        st.markdown(
-            """
-            <style>
-            .input-header-box {
-                font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-                font-size: 18px;
-                font-weight: 600;
-                color: #444444;
-                text-align: center;
-                background-color: #eeeeee;
-                padding: 10px 16px;
-                border-radius: 10px;
-                width: 100%;
-                display: block;
-                margin-bottom: 12px;
-            }
-            .input-header-box span {
-                font-size: 0.8em;
-                color: #999999;
-            }
-            </style>
+    # 輸入地址 / 於地圖雙擊
+    st.markdown(
+        """
+        <style>
+        .input-header-box {
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+            font-size: 18px;
+            font-weight: 600;
+            color: #444444;
+            text-align: center;
+            background-color: #eeeeee;
+            padding: 10px 16px;
+            border-radius: 10px;
+            width: 100%;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .input-header-box span {
+            font-size: 0.8em;
+            color: #999999;
+        }
+        </style>
 
-            <div class="input-header-box">
-                輸入地址 / 於地圖雙擊
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        <div class="input-header-box">
+            輸入地址 / 於地圖雙擊
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-
-    with subtile_row[1]:
-        if st.button("🔃 重新選擇"):
-            st.session_state.points = []
-            st.session_state.nodes = []
-            st.rerun()
 
     # 地址輸入框
     row1 = st.columns([1, 1])
@@ -255,6 +248,12 @@ with col1:
             else:
                 st.warning("請輸入終點地址")
         st.markdown("</div>", unsafe_allow_html=True)
+
+    with row2[2]:
+        if st.button("🔃 重新選擇"):
+            st.session_state.points = []
+            st.session_state.nodes = []
+            st.rerun()
 
 
     st.markdown("""
