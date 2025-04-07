@@ -206,8 +206,8 @@ with col1:
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
 
     # 按鈕
-    row2 = st.columns([1, 1, 1])
-    with row2[0]:
+    row2 = st.columns([1, 1, 1, 1, 1, 1])
+    with row2[3]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
             if start_address.strip():
@@ -226,7 +226,7 @@ with col1:
                 st.warning("請輸入起點地址")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    with row2[1]:
+    with row2[4]:
         # st.markdown("<div style='padding-top: 0x;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🔴 確定終點"):
             if end_address.strip():
@@ -246,8 +246,8 @@ with col1:
                 st.warning("請輸入終點地址")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    with row2[2]:
-        if st.button("🔃 重新選擇"):
+    with row2[5]:
+        if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
