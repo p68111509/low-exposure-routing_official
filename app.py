@@ -296,6 +296,14 @@ with col1:
 
 
     with row2[3]:
+        st.markdown("""
+            <style>
+            /* 根據按鈕文字選取目標按鈕 */
+            button:has(> div:contains("清空選擇")) {
+                margin-top: 20px;
+            }
+            </style>
+        """, unsafe_allow_html=True)
         if st.button("🔃 清空選擇"):
             st.session_state.points = []
             st.session_state.nodes = []
