@@ -155,7 +155,7 @@ with col1:
                 font-weight: 500;
                 color: #666666;
             ">
-                台北市 & 新北市<br>
+                台北市 & 新北市
             </span>
         </h1>
     """, unsafe_allow_html=True)
