@@ -132,7 +132,7 @@ st.markdown("""
 col1, col2, col3, col4 = st.columns([6, 0.5, 6, 1])
 
 with col1:
-
+    # 標題
     st.markdown("""
         <h1 style="
             font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
@@ -207,6 +207,17 @@ with col1:
 
     # 按鈕
     row2 = st.columns([1, 1, 1, 1, 1, 1])
+    
+    # 🚘 三個交通方式按鈕（群組起來）
+    with row2[0]:
+        if st.button("機車", key="moto"):
+            st.session_state.transport_mode = "機車"
+    with row2[1]:
+        if st.button("單車", key="bike"):
+            st.session_state.transport_mode = "單車"
+    with row2[2]:
+        if st.button("步行", key="walk"):
+            st.session_state.transport_mode = "步行"
     with row2[3]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
         if st.button("🟢 確定起點"):
@@ -434,14 +445,7 @@ with col3:
             </style>
         """, unsafe_allow_html=True)
 
-        # 🚘 三個交通方式按鈕（群組起來）
-        if st.button("機車", key="moto"):
-            st.session_state.transport_mode = "機車"
-        if st.button("單車", key="bike"):
-            st.session_state.transport_mode = "單車"
-        if st.button("步行", key="walk"):
-            st.session_state.transport_mode = "步行"
-
+        ################
         st.markdown("</div>", unsafe_allow_html=True)  # 關掉 transport-wrapper
 
         # 🟣 PM2.5 按鈕（獨立放置）
