@@ -399,7 +399,7 @@ with col2:
         <div class="transport-wrapper">
     """, unsafe_allow_html=True)
 
-    map_row = st.columns([2, 8])
+    map_row = st.columns([2, 9])
     
     with map_row[0]:
 
@@ -446,7 +446,7 @@ with col2:
 
         # 🟣 PM2.5 按鈕（獨立放置）
         with st.form(key="pm25_form"):
-            submitted = st.form_submit_button("空汙濃度疊圖")
+            submitted = st.form_submit_button("空汙濃度<br>疊圖")
             st.markdown(f"""
                 <script>
                 const btn = window.parent.document.querySelectorAll('button');
