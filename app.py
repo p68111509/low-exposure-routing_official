@@ -143,7 +143,7 @@ with col1:
                 margin-bottom: 4px;
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             ">
-                Geo-AI 路徑好空氣喵喵喵喵
+                Geo-AI 路徑好空氣喵
             </h1>
             <div style="
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
