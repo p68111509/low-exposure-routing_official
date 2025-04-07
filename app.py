@@ -403,6 +403,37 @@ with col2:
     
     with map_row[0]:
 
+        st.markdown("""
+            <style>
+            .full-width-button {
+                width: 100%;
+                font-size: 14px !important;
+                padding: 8px 0 !important;
+                margin-bottom: 10px;
+                text-align: center;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                font-weight: 600;
+            }
+            .legend-wrapper {
+                margin-top: 16px;
+                text-align: center;
+                width: 100%;
+            }
+            .legend-label {
+                font-size: 14px;
+                font-weight: 600;
+                font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+                margin: 6px auto;
+                padding: 10px 0;
+                border-radius: 8px;
+                background-color: #eeeeee;
+                display: block;
+                width: 100%;
+                line-height: 1.4;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
         # 🚘 三個交通方式按鈕（群組起來）
         if st.button("機車", key="moto"):
             st.session_state.transport_mode = "機車"
@@ -416,26 +447,24 @@ with col2:
         # 🟣 PM2.5 按鈕（獨立放置）
         with st.form(key="pm25_form"):
             submitted = st.form_submit_button("空汙濃度疊圖")
-
             st.markdown(f"""
                 <script>
                 const btn = window.parent.document.querySelectorAll('button');
                 btn.forEach(b => {{
                     if (b.innerText.includes('空汙濃度')) {{
-                        b.classList.add('transport-button');
+                        b.classList.add('full-width-button');
                         b.classList.toggle('active', {str(st.session_state.show_pm25_layer).lower()});
                     }}
                 }});
                 </script>
             """, unsafe_allow_html=True)
-
             if submitted:
                 st.session_state.show_pm25_layer = not st.session_state.show_pm25_layer
 
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟧<br>低暴路徑</div><br>
+                <div class="legend-label">🟧<br>低暴路徑</div>
                 <div class="legend-label">🟦<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
