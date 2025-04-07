@@ -280,7 +280,7 @@ with col1:
 
 
     with row2[2]:
-        if st.button("🔃 清空選擇"):
+        if st.button("🔃 清空選擇喵"):
             st.session_state.points = []
             st.session_state.nodes = []
             st.rerun()
@@ -586,62 +586,62 @@ with col3:
 
 
 
-# ======== 加入右下角名字＋兩張 logo =========
-def get_image_base64(path):
-    with open(path, "rb") as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
-    return encoded
+# # ======== 加入右下角名字＋兩張 logo =========
+# def get_image_base64(path):
+#     with open(path, "rb") as img_file:
+#         encoded = base64.b64encode(img_file.read()).decode()
+#     return encoded
 
-# 圖片路徑
-logo1_path = r"logo/成大_白色垂直.jpg"
-logo2_path = r"logo/實驗室_白色方形.jpg"
+# # 圖片路徑
+# logo1_path = r"logo/成大_白色垂直.jpg"
+# logo2_path = r"logo/實驗室_白色方形.jpg"
 
-# 轉 base64
-logo1_base64 = get_image_base64(logo1_path)
-logo2_base64 = get_image_base64(logo2_path)
+# # 轉 base64
+# logo1_base64 = get_image_base64(logo1_path)
+# logo2_base64 = get_image_base64(logo2_path)
 
-# 插入名字與兩張 logo（疊在右下角，文字置中 & 放大）
-st.markdown(f"""
-    <style>
-    .logo-wrapper {{
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 0px;
-        z-index: 1000;
-        align-items: center;
-        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
-    }}
-    .logo-names {{
-        text-align: center;
-        font-size: 15px;
-        color: #666666;  /* 改深一點 */
-        line-height: 1.5;
-        margin-bottom: 12px;
-    }}
-    .logo-names .title {{
-        font-size: 18px;
-        font-weight: bold;
-        color: #444444;  /* 標題再深一點 */
-        margin-top: 6px;
-        margin-bottom: 4px;
-    }}
-    .logo-img {{
-        width: 80px;
-        opacity: 0.95;
-    }}
-    </style>
-    <div class="logo-wrapper">
-        <div class="logo-names">
-            <div class="title">開發人員</div>
-            許家瑋<br>
-            林祐如<br>
-            <div class="title">指導老師</div>
-            吳治達<br>
-        </div>
-        <img class="logo-img" src="data:image/jpg;base64,{logo1_base64}">
-        <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}"><br><br>
-    </div>
-""", unsafe_allow_html=True)
+# # 插入名字與兩張 logo（疊在右下角，文字置中 & 放大）
+# st.markdown(f"""
+#     <style>
+#     .logo-wrapper {{
+#         position: fixed;
+#         bottom: 20px;
+#         right: 20px;
+#         display: flex;
+#         flex-direction: column;
+#         gap: 0px;
+#         z-index: 1000;
+#         align-items: center;
+#         font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif !important;
+#     }}
+#     .logo-names {{
+#         text-align: center;
+#         font-size: 15px;
+#         color: #666666;  /* 改深一點 */
+#         line-height: 1.5;
+#         margin-bottom: 12px;
+#     }}
+#     .logo-names .title {{
+#         font-size: 18px;
+#         font-weight: bold;
+#         color: #444444;  /* 標題再深一點 */
+#         margin-top: 6px;
+#         margin-bottom: 4px;
+#     }}
+#     .logo-img {{
+#         width: 80px;
+#         opacity: 0.95;
+#     }}
+#     </style>
+#     <div class="logo-wrapper">
+#         <div class="logo-names">
+#             <div class="title">開發人員</div>
+#             許家瑋<br>
+#             林祐如<br>
+#             <div class="title">指導老師</div>
+#             吳治達<br>
+#         </div>
+#         <img class="logo-img" src="data:image/jpg;base64,{logo1_base64}">
+#         <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}"><br><br>
+#     </div>
+# """, unsafe_allow_html=True)
