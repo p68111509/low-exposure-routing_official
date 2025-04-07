@@ -393,42 +393,43 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col3:
-    # 操作說明
     st.markdown("""
     <style>
-    /* expander 整體外框（包含標題區） */
-    div.streamlit-expander {
-        background-color: #cccccc !important;  /* ✅ 改成你想要的底色 */
-        border-radius: 10px !important;
-    }
-
-    /* expander 標題列 */
-    div.streamlit-expanderHeader {
+    .custom-summary {
+        background-color: #cccccc;
+        padding: 10px 16px;
+        border-radius: 10px;
         font-size: 20px;
-        font-weight: 700;
-        color: black;
+        font-weight: bold;
+        font-family: "Noto Sans TC", "Microsoft JhengHei";
         text-align: center;
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+        color: black;
+        cursor: pointer;
+    }
+    .custom-details {
+        background-color: #eeeeee;
+        padding: 16px;
+        border-radius: 10px;
+        font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+        font-size: 16px;
+        color: #444444;
+        line-height: 1.6;
+        margin-top: 10px;
     }
     </style>
+
+    <details>
+    <summary class="custom-summary">🛠️ 操作說明</summary>
+    <div class="custom-details">
+        🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
+        🚘 選擇交通方式：機車、單車或步行<br>
+        🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格與路線<br>
+        ✅ 點選「空汙疊圖」可查看 PM2.5 濃度背景圖層
+    </div>
+    </details>
     """, unsafe_allow_html=True)
-    with st.expander("🛠️ 操作說明"):
-        st.markdown("""
-            <div style="
-                background-color: #eeeeee;
-                padding: 16px;
-                border-radius: 10px;
-                font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 16px;
-                color: #444444;
-                line-height: 1.6;
-            ">
-            🟢 輸入起點與終點地址（或點選地圖設定起終點）<br>
-            🚘 選擇交通方式：機車、單車或步行<br>
-            🧭 點選「路徑解算」：計算兩種路徑（最短/最低暴露），顯示統計表格<br>
-            ✅ 點選「空汙疊圖」可查看PM2.5濃度背景圖層
-            </div>
-        """, unsafe_allow_html=True)
+
+
     # # 灰色橫線
     # st.markdown("""
     #     <style>
@@ -526,8 +527,8 @@ with col3:
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟧<br>低暴路徑</div>
-                <div class="legend-label">🟦<br>最短路徑</div>
+                <div class="legend-label">🟡<br>低暴路徑</div>
+                <div class="legend-label">🔵<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
 
