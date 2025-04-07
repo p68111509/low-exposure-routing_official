@@ -234,7 +234,7 @@ with col1:
 
     with row2[1]:
         # st.markdown("<div style='padding-top: 0px;'>", unsafe_allow_html=True)  # 手動對齊
-        if st.button("🟢 確定起點"):
+        if st.button("🟢 確定起點喵"):
             if start_address.strip():
                 result = geocode(start_address)
                 if result:
