@@ -229,17 +229,24 @@ with col1:
         .custom-radio-group input[type="radio"] {
             width: 18px;
             height: 18px;
-            accent-color: #cc3333; /* ✅ 設定選取顏色為紅色 */
+            accent-color: #cc3333;
             transform: scale(1.3);
         }
         </style>
 
         <div class="custom-radio-group">
-            <label><input type="radio" name="mode" value="機車">機車</label>
-            <label><input type="radio" name="mode" value="單車">單車</label>
-            <label><input type="radio" name="mode" value="步行">步行</label>
+            <label><input type="radio" name="mode" value="機車" onclick="document.getElementById('transport_input').value='機車'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">機車</label>
+            <label><input type="radio" name="mode" value="單車" onclick="document.getElementById('transport_input').value='單車'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">單車</label>
+            <label><input type="radio" name="mode" value="步行" onclick="document.getElementById('transport_input').value='步行'; document.getElementById('transport_input').dispatchEvent(new Event('input'));">步行</label>
         </div>
         """, unsafe_allow_html=True)
+
+        # 隱藏的 text_input，作為橋樑
+        selected_mode = st.text_input("transport_mode_hidden", value=st.session_state.get("transport_mode", "機車"), key="transport_input", label_visibility="collapsed")
+
+        # 把值寫入 session_state
+        st.session_state["transport_mode"] = selected_mode
+
 
 
 
