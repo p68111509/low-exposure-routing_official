@@ -143,17 +143,17 @@ with col1:
                 margin-bottom: 4px;
                 text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
             ">
-                Geo-AI 路徑好空氣喵喵
+                Geo-AI 路徑好空氣
             </h1>
             <div style="
                 font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-                font-size: 14px;
+                font-size: 18px;
                 font-weight: 500;
                 color: #666666;
                 text-align: center;
                 margin-bottom: 0.5em;
             ">
-                台北市 & 新北市喵喵喵喵
+                台北市 & 新北市
             </div>
         """, unsafe_allow_html=True)
 
