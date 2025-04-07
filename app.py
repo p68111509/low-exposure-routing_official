@@ -420,12 +420,13 @@ with col1:
             """, unsafe_allow_html=True)
 
 with col3:
+    # 灰色橫線
     st.markdown("""
         <style>
         .transport-wrapper {
             background-color: #bbbbbb;
             border-radius: 12px;
-            padding: 16px;
+            padding: 1px;
             display: flex;
             flex-direction: column;
             align-items: center;
