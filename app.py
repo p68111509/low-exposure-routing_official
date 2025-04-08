@@ -152,13 +152,13 @@ with col1:
             line-height: 1.2;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         ">
-            Geo-AI 路徑好空氣<br>
+            Geo-AI 路徑好空氣喵<br>
             <span style="
                 font-size: 16px;
                 font-weight: 500;
                 color: #666666;
             ">
-                台北市 & 新北市
+                台北市 & 新北市喵
             </span>
         </h1>
     """, unsafe_allow_html=True)
