@@ -677,48 +677,50 @@ with col3:
 # Footer：版權、聯絡方式、指導老師與 Logo
 def get_image_base64(path):
     with open(path, "rb") as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
-    return encoded
+        return base64.b64encode(img_file.read()).decode()
 
-# 圖片轉 base64
+# 載入圖片
 logo1_base64 = get_image_base64("logo/成大_白色橫式.jpg")
 logo2_base64 = get_image_base64("logo/實驗室_白色橫式.jpg")
 logo3_base64 = get_image_base64("logo/環境部_橫式.png")
 
 st.markdown(f"""
-    <hr style="margin-top: 40px; margin-bottom: 10px; border: none; border-top: 1px solid #ccc;" />
+<hr style="margin-top: 40px; margin-bottom: 10px; border: none; border-top: 1px solid #ccc;" />
 
-    <div style="
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-        padding: 10px 20px;
-    ">
-        <!-- 左側文字區塊 -->
-        <div style="flex: 1; min-width: 280px; font-size: 13px; color: #666;">
-            <p style="margin-bottom: 4px;">
-                © 2025 許家瑋 林祐如｜國立成功大學 測量及空間資訊學系｜指導老師：吳治達 教授<br>
-                聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>
-            </p>
-            <p style="margin-top: 6px; margin-bottom: 0px;">
-                本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
-            </p>
-            <p style="margin-top: 8px; font-size: 12px; color: #999;">
-                本系統僅供展示與研究用途，禁止未經授權之下載、修改、或商業使用。<br>
-                所有原始碼、資料與介面設計，皆為作者智慧財產，保留所有權利。
-            </p>
-        </div>
+<div style="
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    padding: 10px 20px;
+">
 
-        <!-- 右側 Logo 區塊 -->
-        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 10px;">
-            <img src="data:image/jpg;base64,{logo1_base64}" style="height: 40px;"/>
-            <img src="data:image/jpg;base64,{logo2_base64}" style="height: 40px;"/>
-            <img src="data:image/png;base64,{logo3_base64}" style="height: 40px;"/>
-        </div>
+    <!-- 左側文字 -->
+    <div style="flex: 1; min-width: 280px; font-size: 13px; color: #666;">
+        <p style="margin-bottom: 4px;">
+            © 2025 許家瑋 林祐如｜國立成功大學 測量及空間資訊學系｜指導老師：吳治達 教授<br>
+            聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>
+        </p>
+        <p style="margin-top: 6px; margin-bottom: 0px;">
+            本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
+        </p>
+        <p style="margin-top: 8px; font-size: 12px; color: #999;">
+            本系統僅供展示與研究用途，禁止未經授權之下載、修改、或商業使用。<br>
+            所有原始碼、資料與介面設計，皆為作者智慧財產，保留所有權利。
+        </p>
     </div>
+
+    <!-- 右側 Logo（水平排列） -->
+    <div style="display: flex; gap: 16px; align-items: center;">
+        <img src="data:image/jpg;base64,{logo1_base64}" style="height: 40px;" />
+        <img src="data:image/jpg;base64,{logo2_base64}" style="height: 40px;" />
+        <img src="data:image/png;base64,{logo3_base64}" style="height: 40px;" />
+    </div>
+</div>
 """, unsafe_allow_html=True)
+
 
 
 # © 2025 許家瑋 林侑萱 林宇家｜國立成功大學 測量及空間資訊學系｜指導老師：吳治達 教授
