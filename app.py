@@ -669,40 +669,32 @@ with col3:
 #         opacity: 0.95;
 #     }}
 #     </style>
-#     <div class="logo-wrapper">
-#         <div class="logo-names">
-#             <div class="title">開發人員</div>
-#             許家瑋<br>
-#             林祐如<br>
-#             <div class="title">指導老師</div>
-#             吳治達<br>
-#         </div>
 #         <img class="logo-img" src="data:image/jpg;base64,{logo1_base64}">
 #         <img class="logo-img" src="data:image/jpg;base64,{logo2_base64}"><br><br>
 #     </div>
 # """, unsafe_allow_html=True)
 
-# Footer：版權、聯絡方式、指導老師與 Logo
-def get_image_base64(path):
-    with open(path, "rb") as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
-    return encoded
+# # Footer：版權、聯絡方式、指導老師與 Logo
+# def get_image_base64(path):
+#     with open(path, "rb") as img_file:
+#         encoded = base64.b64encode(img_file.read()).decode()
+#     return encoded
 
-# 圖片轉 base64
-logo1_base64 = get_image_base64("logo/成大_白色垂直.jpg")
-logo2_base64 = get_image_base64("logo/實驗室_白色方形.jpg")
+# # 圖片轉 base64
+# logo1_base64 = get_image_base64("logo/成大_白色垂直.jpg")
+# logo2_base64 = get_image_base64("logo/實驗室_白色方形.jpg")
 
-st.markdown("""
-    <hr style="margin-top: 40px; margin-bottom: 10px; border: none; border-top: 1px solid #ccc;" />
+# st.markdown("""
+#     <hr style="margin-top: 40px; margin-bottom: 10px; border: none; border-top: 1px solid #ccc;" />
 
-    <div style="text-align: center; font-size: 13px; color: #666; font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;">
-        <p style="margin-bottom: 4px;">
-            © 2025 許家瑋｜國立成功大學 測量及空間資訊學系｜指導老師：吳治達 教授<br>
-            聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>｜GitHub 專案：
-            <a href="https://github.com/p68111509/low-exposure-routing_demo" target="_blank">low-exposure-routing_demo</a>
-        </p>
-        <p style="margin-top: 6px; margin-bottom: 0px;">
-            本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
-        </p>
-    </div>
-""", unsafe_allow_html=True)
+#     <div style="text-align: center; font-size: 13px; color: #666; font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;">
+#         <p style="margin-bottom: 4px;">
+#             © 2025 許家瑋｜國立成功大學 測量及空間資訊學系｜指導老師：吳治達 教授<br>
+#             聯絡信箱：<a href="mailto:p68111509@gs.ncku.edu.tw">p68111509@gs.ncku.edu.tw</a>｜GitHub 專案：
+#             <a href="https://github.com/p68111509/low-exposure-routing_demo" target="_blank">low-exposure-routing_demo</a>
+#         </p>
+#         <p style="margin-top: 6px; margin-bottom: 0px;">
+#             本系統資料與分析目的僅供學術與教育參考，部分 PM2.5 空間資訊參考自環境部公開資料。
+#         </p>
+#     </div>
+# """, unsafe_allow_html=True)
