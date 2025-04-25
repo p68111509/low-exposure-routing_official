@@ -185,13 +185,12 @@ with col1:
     with row1[0]:
         if "set_start_address" in st.session_state:
             st.session_state.start_address = st.session_state.pop("set_start_address")
-        start_address = st.text_input(label="", placeholder="起點地址", key="start_address", help="Please enter the start address", className="start-address")
-
+        start_address = st.text_input(label="", placeholder="起點地址", key="start_address")
     with row1[1]:
         if "set_end_address" in st.session_state:
             st.session_state.end_address = st.session_state.pop("set_end_address")
         end_address = st.text_input(label="", placeholder="終點地址", key="end_address")
-        
+
     # 按鈕
     row2 = st.columns([1, 1, 1, 1])
     with row2[0]:
