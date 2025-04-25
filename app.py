@@ -547,7 +547,7 @@ with col3:
         if st.session_state.has_routed and len(st.session_state.nodes) == 2:
             for path, color, label in [
                 (compute_path(G, *st.session_state.nodes, "length")[0], "blue", "最短路徑"),
-                (compute_path(G, *st.session_state.nodes, "exposure")[0], "green", "最低暴露路徑")
+                (compute_path(G, *st.session_state.nodes, "exposure")[0], "#00d26a", "最低暴露路徑")
             ]:
                 for u, v in zip(path[:-1], path[1:]):
                     edge_data = G.get_edge_data(u, v)
