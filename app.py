@@ -526,7 +526,7 @@ with col3:
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟠<br>低暴路徑</div>
+                <div class="legend-label">🟢<br>低暴路徑</div>
                 <div class="legend-label">🔵<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
@@ -547,7 +547,7 @@ with col3:
         if st.session_state.has_routed and len(st.session_state.nodes) == 2:
             for path, color, label in [
                 (compute_path(G, *st.session_state.nodes, "length")[0], "blue", "最短路徑"),
-                (compute_path(G, *st.session_state.nodes, "exposure")[0], "orange", "最低暴露路徑")
+                (compute_path(G, *st.session_state.nodes, "exposure")[0], "green", "最低暴露路徑")
             ]:
                 for u, v in zip(path[:-1], path[1:]):
                     edge_data = G.get_edge_data(u, v)
