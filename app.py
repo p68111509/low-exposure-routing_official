@@ -535,8 +535,8 @@ with col3:
         # 圖例：不可點擊的樣式展示（縮小空白）
         st.markdown("""
             <div class="legend-wrapper">
-                <div class="legend-label">🟢<br>低暴路徑</div>
-                <div class="legend-label">🔵<br>最短路徑</div>
+                <div class="legend-label">🟩<br>低暴路徑</div>
+                <div class="legend-label">🟦<br>最短路徑</div>
             </div>
         """, unsafe_allow_html=True)
 
